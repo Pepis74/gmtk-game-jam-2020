@@ -16,7 +16,7 @@ public class CatObject : MonoBehaviour
     public int attractiveness;
     public float yOffset;
     public float xOffset;
-    GameManager manager;
+    public GameManager manager;
     Rigidbody2D rig;
     UIManager uI;
     Animator anim;

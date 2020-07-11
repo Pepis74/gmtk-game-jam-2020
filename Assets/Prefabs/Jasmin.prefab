@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7229476290065418779}
   - component: {fileID: 7229476290065418781}
-  - component: {fileID: 7229476290065418778}
+  - component: {fileID: -1368144364908882709}
   m_Layer: 0
   m_Name: Jasmin
   m_TagString: Untagged
@@ -242,7 +242,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17106774, y: 0.16091368}
   m_EdgeRadius: 0
---- !u!114 &7229476290065418778
+--- !u!114 &-1368144364908882709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7229476290065418776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71e5ada73b6197043983c794c92dd21d, type: 3}
+  m_Script: {fileID: 11500000, guid: 14c8af507aecab94481b6a882e8c186e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objName: 
@@ -260,6 +260,9 @@ MonoBehaviour:
   movementType: 0
   cellPosition: 0
   cellToMoveTo: 0
+  attractiveness: 4
   yOffset: 0.08
   xOffset: -0.01
+  manager: {fileID: 0}
   move: 0
+  destructionPar: {fileID: 0}

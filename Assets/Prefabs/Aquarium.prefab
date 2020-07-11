@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7315780961139476268}
   - component: {fileID: 7315780961139476274}
-  - component: {fileID: 7315780961139476275}
+  - component: {fileID: -663293533056159428}
   m_Layer: 0
   m_Name: Aquarium
   m_TagString: Untagged
@@ -66,7 +66,7 @@ PolygonCollider2D:
       - {x: -0.00081280345, y: -0.13973299}
       - {x: 0.09662393, y: -0.0810253}
       - {x: 0.09566952, y: 0.081163526}
---- !u!114 &7315780961139476275
+--- !u!114 &-663293533056159428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7315780961139476269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71e5ada73b6197043983c794c92dd21d, type: 3}
+  m_Script: {fileID: 11500000, guid: 14c8af507aecab94481b6a882e8c186e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objName: 
@@ -84,9 +84,12 @@ MonoBehaviour:
   movementType: 1
   cellPosition: 0
   cellToMoveTo: 0
+  attractiveness: 6
   yOffset: 0.075
   xOffset: 0
+  manager: {fileID: 0}
   move: 0
+  destructionPar: {fileID: 0}
 --- !u!1 &7315780961184451854
 GameObject:
   m_ObjectHideFlags: 0

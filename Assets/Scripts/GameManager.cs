@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Vector2 oGCellPos;
     public Cell[] cells = new Cell[Definitions.BOARD_SIZE * Definitions.BOARD_SIZE];
+    public int valuablesLeft;
     int crescendoA;
     int randomInt;
     int posValue;
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
             ins.transform.parent = objectParent;
             ins.transform.localPosition = new Vector3(Mathf.Round(cells[randomInt].transform.localPosition.x * 1000) / 1000 + objectPrefabs[i].GetComponent<CatObject>().xOffset, (Mathf.Round(cells[randomInt].transform.localPosition.y * 1000) / 1000) + objectPrefabs[i].GetComponent<CatObject>().yOffset, -0.001f * randomInt);
             ins.transform.localScale = Vector3.one;
-            ins.GetComponent<CatObject>().cellPosition = randomInt;
+            ins.GetComponent<CatObject>().cellPosition = randomInt;       
             cells[randomInt].occupied = true;
             catObjects.Add(ins.GetComponent<CatObject>());
         }
@@ -221,6 +222,11 @@ public class GameManager : MonoBehaviour
         }
 
         selectText.text = Definitions.SELECT_TXT;
+    }
+
+    public void GameOver()
+    {
+
     }
 
     public List<int> GetAdjacentCells(int cell, int radius=1)

@@ -176,6 +176,7 @@ MonoBehaviour:
   attractiveness: 0
   yOffset: 0.09
   xOffset: 0
+  manager: {fileID: 0}
   move: 0
 --- !u!60 &83780047
 PolygonCollider2D:
@@ -783,6 +784,7 @@ MonoBehaviour:
   attractiveness: 0
   yOffset: 0.09
   xOffset: 0
+  manager: {fileID: 0}
   move: 0
 --- !u!60 &1199317599
 PolygonCollider2D:
@@ -994,6 +996,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  valuablesLeft: 0
 --- !u!1 &1394142431
 GameObject:
   m_ObjectHideFlags: 0
@@ -1226,7 +1229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1566309123
 RectTransform:
   m_ObjectHideFlags: 0

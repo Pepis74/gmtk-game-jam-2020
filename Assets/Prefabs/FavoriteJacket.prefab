@@ -111,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7193993232285206261}
   - component: {fileID: 2972947067110557613}
-  - component: {fileID: 9060014365300902268}
+  - component: {fileID: -7242919466982715776}
   m_Layer: 0
   m_Name: FavoriteJacket
   m_TagString: Untagged
@@ -170,7 +170,7 @@ PolygonCollider2D:
       - {x: 0.020922447, y: -0.020513117}
       - {x: 0.097169995, y: 0.01737754}
       - {x: 0.09674848, y: 0.16598178}
---- !u!114 &9060014365300902268
+--- !u!114 &-7242919466982715776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1675636022541927285}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71e5ada73b6197043983c794c92dd21d, type: 3}
+  m_Script: {fileID: 11500000, guid: 14c8af507aecab94481b6a882e8c186e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objName: 
@@ -188,9 +188,12 @@ MonoBehaviour:
   movementType: 2
   cellPosition: 0
   cellToMoveTo: 0
+  attractiveness: 4
   yOffset: 0.11
   xOffset: 0
+  manager: {fileID: 0}
   move: 0
+  destructionPar: {fileID: 0}
 --- !u!1 &6404704752293323477
 GameObject:
   m_ObjectHideFlags: 0

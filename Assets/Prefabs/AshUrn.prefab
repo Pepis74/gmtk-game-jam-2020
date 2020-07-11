@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4099816412156027579}
   - component: {fileID: 4099816412156027577}
-  - component: {fileID: 4632766327686321352}
+  - component: {fileID: 3005975354133332076}
   m_Layer: 0
   m_Name: AshUrn
   m_TagString: Untagged
@@ -60,7 +60,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.09048335, y: 0.15968195}
   m_EdgeRadius: 0
---- !u!114 &4632766327686321352
+--- !u!114 &3005975354133332076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4099816412156027524}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71e5ada73b6197043983c794c92dd21d, type: 3}
+  m_Script: {fileID: 11500000, guid: 14c8af507aecab94481b6a882e8c186e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objName: 
@@ -78,9 +78,12 @@ MonoBehaviour:
   movementType: 0
   cellPosition: 0
   cellToMoveTo: 0
+  attractiveness: 1
   yOffset: 0.045
   xOffset: 0
+  manager: {fileID: 0}
   move: 0
+  destructionPar: {fileID: 0}
 --- !u!1 &4099816412270809970
 GameObject:
   m_ObjectHideFlags: 0
