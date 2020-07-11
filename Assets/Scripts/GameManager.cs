@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     int crescendoA;
     int randomInt;
     int posValue;
-    public int[] startingViableCells;
+    public List<int> startingViableCells = new List<int>();
 
 
     void Start()
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
             case 0:
                 startingViableCells = GetAdjacentCells(toMove.cellPosition);
 
-                for(int i = 0; i < startingViableCells.Length; i++)
+                for(int i = 0; i < startingViableCells.Count; i++)
                 {
                     if(!cells[startingViableCells[i]].occupied)
                     {
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
             case 1:
                 startingViableCells = GetAdjacentCells(toMove.cellPosition);
 
-                for (int i = 0; i < startingViableCells.Length; i++)
+                for (int i = 0; i < startingViableCells.Count; i++)
                 {
                     if (!cells[startingViableCells[i]].occupied)
                     {
@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         bool is_lft;
         bool is_rgt;
 
-        List<int> adjacentCells = new List<int>;
+        List<int> adjacentCells = new List<int>();
 
         // Detect postion of the cell in the board
         is_top = (cell / Definitions.BOARD_SIZE == 0);
@@ -220,8 +220,8 @@ public class GameManager : MonoBehaviour
 
     public List<int> getMovementRadius(int cell, int radius)
     {
-        List<int> cellsInRadius = new List<int>;
-        List<int> radiusBoundary = new List<int>;
+        List<int> cellsInRadius = new List<int>();
+        List<int> radiusBoundary = new List<int>();
 
 
         return cellsInRadius;
