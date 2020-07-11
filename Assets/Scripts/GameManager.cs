@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
             oGCellPos.x = Mathf.Round(oGCellPos.x * 100) / 100;
             oGCellPos.y -= 0.06f;
             oGCellPos.y = Mathf.Round(oGCellPos.y * 100) / 100;
-            ins.transform.localPosition = oGCellPos;
+            ins.transform.localPosition = new Vector3(oGCellPos.x, oGCellPos.y, i * -0.001f);
             ins.transform.localScale = Vector3.one;
             cells[i] = ins.GetComponentInChildren<Cell>();
             cells[i].zOffset = i * -0.001f;
