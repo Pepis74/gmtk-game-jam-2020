@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
         switch (movementType)
         {
             case 0:
-                startingViableCells = GetMovementRadius(toMove.cellPosition, 2);
+                startingViableCells = GetAdjacentCells(toMove.cellPosition);
 
                 for (int i = 0; i < startingViableCells.Count; i++)
                 {
@@ -159,66 +159,7 @@ public class GameManager : MonoBehaviour
         selectText.text = Definitions.SELECT_TXT;
     }
 
-    public List<int> GetAdjacentCells(int cell)
-    {
-        bool is_top;
-        bool is_bot;
-        bool is_lft;
-        bool is_rgt;
-
-        List<int> adjacentCells = new List<int>();
-
-        // Detect postion of the cell in the board
-        is_top = (cell / Definitions.BOARD_SIZE == 0);
-        is_bot = (cell / Definitions.BOARD_SIZE == Definitions.BOARD_SIZE - 1);
-        is_lft = (cell % Definitions.BOARD_SIZE == 0);
-        is_rgt = (cell % Definitions.BOARD_SIZE == Definitions.BOARD_SIZE - 1);
-
-        // Detect adjacent cells based on position
-        if (!is_top)
-        {
-            adjacentCells.Add(cell - Definitions.BOARD_SIZE);
-        }
-
-        if (!is_bot)
-        {
-            adjacentCells.Add(cell + Definitions.BOARD_SIZE);
-        }
-
-        if (!is_lft)
-        {
-            adjacentCells.Add(cell - 1);
-        }
-
-        if (!is_rgt)
-        {
-            adjacentCells.Add(cell + 1);
-        }
-
-        if (!is_top && !is_lft)
-        {
-            adjacentCells.Add(cell - Definitions.BOARD_SIZE - 1);
-        }
-
-        if (!is_top && !is_rgt)
-        {
-            adjacentCells.Add(cell - Definitions.BOARD_SIZE + 1);
-        }
-
-        if (!is_bot && !is_lft)
-        {
-            adjacentCells.Add(cell + Definitions.BOARD_SIZE - 1);
-        }
-
-        if (!is_bot && !is_rgt)
-        {
-            adjacentCells.Add(cell + Definitions.BOARD_SIZE + 1);
-        }
-
-        return adjacentCells;
-    }
-
-    public List<int> GetMovementRadius(int cell, int radius)
+    public List<int> GetAdjacentCells(int cell, int radius=1)
     {
         // This function expects a cell order of top-right to bottom-left
         int dstToTop;
@@ -245,9 +186,6 @@ public class GameManager : MonoBehaviour
         dstToBot = (Definitions.BOARD_SIZE - 1) - (cell / Definitions.BOARD_SIZE);
         dstToRgt = cell % Definitions.BOARD_SIZE;
         dstToLft = (Definitions.BOARD_SIZE - 1) - (cell % Definitions.BOARD_SIZE);
-
-        Debug.Log("Top Bot Lft Rgt");
-        Debug.Log(dstToTop + " " + dstToBot + " " + dstToLft + " " + dstToRgt);
 
         // Iterate in an helicoidal manner, limited by the distances
         maxIterations = 1 + radius * 4;
@@ -312,8 +250,6 @@ public class GameManager : MonoBehaviour
                 if (!outOfBounds)
                 {
                     newCell = cell - coordX - (coordY * Definitions.BOARD_SIZE);
-
-                    Debug.Log(" X " + coordX + " Y " + coordY + " NCELL " + newCell + " OCELL " + cell);
 
                     if (!cellsInRadius.Contains(newCell))
                     {
