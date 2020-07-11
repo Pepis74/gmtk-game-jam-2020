@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4099816412156027579}
   - component: {fileID: 4099816412156027577}
   - component: {fileID: 4632766327686321352}
+  - component: {fileID: -5060979826348724621}
   m_Layer: 0
   m_Name: AshUrn
   m_TagString: Untagged
@@ -71,7 +72,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e5ada73b6197043983c794c92dd21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objName: 
+  descGameplay: 
+  descFlavor: 
+  movementType: 0
   cellPosition: 0
+  cellToMoveTo: 0
+  move: 0
+--- !u!50 &-5060979826348724621
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099816412156027524}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4099816412270809970
 GameObject:
   m_ObjectHideFlags: 0

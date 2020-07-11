@@ -9,16 +9,12 @@ public class Cell : MonoBehaviour
     GameManager manager;
     CatObject toFind;
     Animator anim;
+    bool move;
 
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
         manager = FindObjectOfType<GameManager>();
-    }
-
-    void Update()
-    {
-        
     }
 
     void OnMouseOver()
@@ -49,6 +45,14 @@ public class Cell : MonoBehaviour
         if(manager.objectToMove.cellPosition == posValue)
         {
             manager.DisableCells();
+        }
+
+        else if(GetComponentInChildren<SpriteRenderer>().color == manager.blue)
+        {
+            manager.cellParent.gameObject.SetActive(false);
+
+            manager.objectToMove.cellToMoveTo = posValue;
+            manager.objectToMove.move = true;
         }
     }
 }

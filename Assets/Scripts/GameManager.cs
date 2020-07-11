@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Transform cellParent;
-    [SerializeField]
-    Color blue;
+    public Color blue;
     [SerializeField]
     Color red;
     [SerializeField]
@@ -90,7 +89,7 @@ public class GameManager : MonoBehaviour
        
         for(int i = 0; i < catObjects.Count; i++)
         {
-            catObjects[i].GetComponent<BoxCollider2D>().enabled = false;
+            catObjects[i].GetComponent<Collider2D>().enabled = false;
         }
 
         for (int i = 0; i < cells.Length; i++)
@@ -153,7 +152,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < catObjects.Count; i++)
         {
-            catObjects[i].GetComponent<BoxCollider2D>().enabled = true;
+            catObjects[i].GetComponent<Collider2D>().enabled = true;
         }
 
         selectText.text = Definitions.SELECT_TXT;
