@@ -159,20 +159,14 @@ public class GameManager : MonoBehaviour
         selectText.text = Definitions.SELECT_TXT;
     }
 
-    public int[] GetAdjacentCells(int cell)
+    public List<int> GetAdjacentCells(int cell)
     {
-        int c = 0;
         bool is_top;
         bool is_bot;
         bool is_lft;
         bool is_rgt;
 
-        // Fill empty vector
-        int[] adjacentCells = new int[Definitions.NO_OF_ADJACENT_CELLS];
-        for (int i = 0; i < adjacentCells.Length; i++)
-        {
-            adjacentCells[i] = Definitions.NOT_AN_ADJACENT_SLOT;
-        }
+        List<int> adjacentCells = new List<int>;
 
         // Detect postion of the cell in the board
         is_top = (cell / Definitions.BOARD_SIZE == 0);
@@ -183,44 +177,84 @@ public class GameManager : MonoBehaviour
         // Detect adjacent cells based on position
         if (!is_top)
         {
-            adjacentCells[c++] = cell - Definitions.BOARD_SIZE;
+            adjacentCells.Add(cell - Definitions.BOARD_SIZE);
         }
 
         if (!is_bot)
         {
-            adjacentCells[c++] = cell + Definitions.BOARD_SIZE;
+            adjacentCells.Add(cell + Definitions.BOARD_SIZE);
         }
 
         if (!is_lft)
         {
-            adjacentCells[c++] = cell - 1;
+            adjacentCells.Add(cell - 1);
         }
 
         if (!is_rgt)
         {
-            adjacentCells[c++] = cell + 1;
+            adjacentCells.Add(cell + 1);
         }
 
-        if (!(is_top && is_lft))
+        if (!is_top && !is_lft)
         {
-            adjacentCells[c++] = cell - Definitions.BOARD_SIZE - 1;
+            adjacentCells.Add(cell - Definitions.BOARD_SIZE - 1);
         }
 
-        if (!(is_top && is_rgt))
+        if (!is_top && !is_rgt)
         {
-            adjacentCells[c++] = cell - Definitions.BOARD_SIZE + 1;
+            adjacentCells.Add(cell - Definitions.BOARD_SIZE + 1);
         }
 
-        if (!(is_bot && is_lft))
+        if (!is_bot && !is_lft)
         {
-            adjacentCells[c++] = cell + Definitions.BOARD_SIZE - 1;
+            adjacentCells.Add(cell + Definitions.BOARD_SIZE - 1);
         }
 
-        if (!(is_bot && !is_rgt))
+        if (!is_bot && !is_rgt)
         {
-            adjacentCells[c++] = cell + Definitions.BOARD_SIZE + 1;
+            adjacentCells.Add(cell + Definitions.BOARD_SIZE + 1);
         }
 
         return adjacentCells;
+    }
+
+    public List<int> getMovementRadius(int cell, int radius)
+    {
+        List<int> cellsInRadius = new List<int>;
+        List<int> radiusBoundary = new List<int>;
+
+
+        return cellsInRadius;
+    }
+
+    public int getLowestArrayValue(int[] array)
+    {
+        int lowestValue = 1;
+
+        for (int i = 1; i < array.Length; i++)
+        {
+            if (array[i] < lowestValue)
+            {
+                lowestValue = array[i];
+            }
+        }
+
+        return lowestValue;
+    }
+
+    public bool isValueInArray(int value, int[] array)
+    {
+        bool valueFound = false;
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] == value)
+            {
+                valueFound = true;
+                break;
+            }
+        }
+
+        return valueFound;
     }
 }

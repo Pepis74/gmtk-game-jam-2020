@@ -18,6 +18,11 @@ public class Definitions
     public const int NO_OF_ADJACENT_CELLS = 8;
     public const int NOT_AN_ADJACENT_SLOT = 64;
 
+    // Cat related constants
+    public const int NODE_NOT_IN_LIST = 30000;
+    public const int NODE_DIST_INFINITY = 30001;
+    public const int MAX_DIJKSTRA_ITERATIONS = 30000;
+
     // Cat personality constants
     public const int NO_OF_FUR_COLORS = 1;
     public const float MAX_STAMINA_BASE = 1.0f;

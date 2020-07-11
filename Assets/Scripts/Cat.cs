@@ -75,8 +75,29 @@ public class Cat : MonoBehaviour
 
     Path GetOptimalPathToCell(int cell)
     {
+        // Implements the Dijkstra algorithm 
         Path optimalPath = new Path();
+        int[] unvisitedNodes = new int[Definitions.NO_OF_BOARD_CELLS];
+        int[] visitedNodes = new int[Definitions.NO_OF_BOARD_CELLS];
+        int[] tentativeDistance = new int[Definitions.NO_OF_BOARD_CELLS];
+        int timeout;
 
+        // Initialize arrays
+        for (int i = 0; i < Definitions.NO_OF_BOARD_CELLS; i++)
+        {
+            unvisitedNodes[i] = i;
+            visitedNodes[i] = Definitions.NODE_NOT_IN_LIST;
+            tentativeDistance[i] = Definitions.NODE_DIST_INFINITY;
+        }
+        
+        // Set tentative distance to current node to 0
+        tentativeDistance[this.cellPosition] = 0;
+
+        //while ()
+        //{
+
+        //}
+        
         return optimalPath;
     }
 
