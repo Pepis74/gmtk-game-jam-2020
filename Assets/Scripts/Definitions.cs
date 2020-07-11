@@ -52,10 +52,10 @@ public class Definitions
     public const int BAG_OF_TREATS_IDX = 8;
 
     // Texts
-    public const string SELECT_TXT = "SELECT AN OBJECT TO MOVE OR PLACE A NEW ONE.";
-    public const string CHOOSE_TXT = "CHOOSE A LOCATION. PRESS AGAIN ON THE OBJECT TO CANCEL.";
-    public const string PLACE_TXT = "PLACE THE OBJECT YOU'VE CHOSEN.";
-    public const string CAT_TXT = "IT'S THE CAT'S TURN.";
+    public const string SELECT_TXT = "SELECT AN OBJECT TO MOVE OR PLACE A NEW ONE";
+    public const string CHOOSE_TXT = "CHOOSE A LOCATION, PRESS AGAIN ON THE OBJECT TO CANCEL";
+    public const string PLACE_TXT = "PLACE THE OBJECT YOU'VE CHOSEN";
+    public const string CAT_TXT = "IT'S THE CAT'S TURN";
 
     // Speeds
     public const float CATOBJ_SPD = 0.75f;

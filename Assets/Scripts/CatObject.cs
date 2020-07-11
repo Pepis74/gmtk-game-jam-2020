@@ -13,6 +13,7 @@ public class CatObject : MonoBehaviour
     int movementType;
     public int cellPosition;
     public int cellToMoveTo;
+    public int attractiveness;
     public float yOffset;
     public float xOffset;
     GameManager manager;
