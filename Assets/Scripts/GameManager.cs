@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
         switch (movementType)
         {
             case 0:
-                startingViableCells = GetMovementRadius(toMove.cellPosition, 1);
+                startingViableCells = GetMovementRadius(toMove.cellPosition, 2);
 
                 for (int i = 0; i < startingViableCells.Count; i++)
                 {
@@ -219,6 +219,7 @@ public class GameManager : MonoBehaviour
 
     public List<int> GetMovementRadius(int cell, int radius)
     {
+        // This function expects a cell order of top-right to bottom-left
         int dstToTop;
         int dstToBot;
         int dstToLft;
@@ -232,6 +233,7 @@ public class GameManager : MonoBehaviour
         int maxIterations;
         bool iterateOnX;
         bool positiveVal;
+        bool outOfBounds;
 
         int newCell;
 
@@ -240,8 +242,11 @@ public class GameManager : MonoBehaviour
         // Detect distances from the cell to the edges of the board
         dstToTop = cell / Definitions.BOARD_SIZE;
         dstToBot = (Definitions.BOARD_SIZE - 1) - (cell / Definitions.BOARD_SIZE);
-        dstToLft = cell % Definitions.BOARD_SIZE;
-        dstToRgt = (Definitions.BOARD_SIZE - 1) - (cell % Definitions.BOARD_SIZE);
+        dstToRgt = cell % Definitions.BOARD_SIZE;
+        dstToLft = (Definitions.BOARD_SIZE - 1) - (cell % Definitions.BOARD_SIZE);
+
+        Debug.Log("Top Bot Lft Rgt");
+        Debug.Log(dstToTop + " " + dstToBot + " " + dstToLft + " " + dstToRgt);
 
         // Iterate in an helicoidal manner, limited by the distances
         maxIterations = 1 + radius * 4;
@@ -259,45 +264,61 @@ public class GameManager : MonoBehaviour
                 {
                     if (positiveVal)
                     {
-                        if (coordX + 1 <= dstToTop)
-                        {
-                            coordX++;
-                        }
+                        coordX++;
                     }
                     else
                     {
-                        if (-(coordX - 1) <= dstToBot)
-                        {
-                            coordX--;
-                        }
-
+                        coordX--;
                     }
                 }
                 else
                 {
                     if (positiveVal)
                     {
-                        if (coordY + 1 <= dstToRgt)
-                        {
-                            coordY++;
-                        }
+                        coordY++;
                     }
                     else
                     {
-                        if (-(coordY - 1) <= dstToLft)
-                        {
-                            coordY--;
-                        }
+                        coordY--;
+                    }
+
+                }
+
+                // Check boundaries
+                outOfBounds = false;
+
+                if (coordX > dstToRgt)
+                {
+                    outOfBounds = true;
+                }
+
+                if (coordX < -dstToLft)
+                {
+                    outOfBounds = true;
+                }
+
+                if (coordY > dstToTop)
+                {
+                    outOfBounds = true;
+                }
+
+                if (coordY < -dstToBot)
+                {
+                    outOfBounds = true;
+                }
+
+                // Following the coordinates add the value to the list if they are not out of bounds
+                if (!outOfBounds)
+                {
+                    newCell = cell - coordX - (coordY * Definitions.BOARD_SIZE);
+
+                    Debug.Log(" X " + coordX + " Y " + coordY + " NCELL " + newCell + " OCELL " + cell);
+
+                    if (!cellsInRadius.Contains(newCell))
+                    {
+                        cellsInRadius.Add(newCell);
                     }
                 }
-
-                // Following the coordinates add the value to the list
-                newCell = cell + coordX + (coordY * Definitions.BOARD_SIZE);
-                if (!cellsInRadius.Contains(newCell))
-                {
-                    cellsInRadius.Add(newCell);
-                }
-
             }
 
             // Control the state of the helix
