@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     Transform objectParent;
     public CatObject objectToMove;
     public List<CatObject> catObjects = new List<CatObject>();
-    List<int> viableCells = new List<int>();
     [SerializeField]
     GameObject cell;
     GameObject ins;
@@ -27,7 +26,8 @@ public class GameManager : MonoBehaviour
     int crescendoA;
     int randomInt;
     int posValue;
-    public List<int> startingViableCells = new List<int>();
+    List<int> viableCells = new List<int>();
+    List<int> startingViableCells = new List<int>();
 
 
     void Start()
@@ -50,9 +50,10 @@ public class GameManager : MonoBehaviour
             oGCellPos.x = Mathf.Round(oGCellPos.x * 100) / 100;
             oGCellPos.y -= 0.06f;
             oGCellPos.y = Mathf.Round(oGCellPos.y * 100) / 100;
-            ins.transform.localPosition = oGCellPos;
+            ins.transform.localPosition = new Vector3(oGCellPos.x, oGCellPos.y, i * -0.001f);
             ins.transform.localScale = Vector3.one;
             cells[i] = ins.GetComponentInChildren<Cell>();
+            cells[i].zOffset = i * -0.001f;
             cells[i].posValue = posValue;
             posValue += 1;
             crescendoA += 1;
@@ -72,7 +73,7 @@ public class GameManager : MonoBehaviour
 
             ins = Instantiate(objectPrefabs[i], Vector2.zero, objectPrefabs[i].transform.rotation);
             ins.transform.parent = objectParent;
-            ins.transform.localPosition = new Vector2(Mathf.Round(cells[randomInt].transform.localPosition.x * 100) / 100, (Mathf.Round(cells[randomInt].transform.localPosition.y * 100) / 100) + 0.03f);
+            ins.transform.localPosition = new Vector3(Mathf.Round(cells[randomInt].transform.localPosition.x * 1000) / 1000 + objectPrefabs[i].GetComponent<CatObject>().xOffset, (Mathf.Round(cells[randomInt].transform.localPosition.y * 1000) / 1000) + objectPrefabs[i].GetComponent<CatObject>().yOffset, -0.001f * randomInt);
             ins.transform.localScale = Vector3.one;
             ins.GetComponent<CatObject>().cellPosition = randomInt;
             cells[randomInt].occupied = true;
