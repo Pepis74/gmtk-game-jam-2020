@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,8 +11,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Color red;
     [SerializeField]
+    Text selectText;
+    [SerializeField]
     Transform objectParent;
     public CatObject objectToMove;
+    public List<CatObject> catObjects = new List<CatObject>();
+    List<int> viableCells = new List<int>();
     [SerializeField]
     GameObject cell;
     GameObject ins;
@@ -19,13 +24,13 @@ public class GameManager : MonoBehaviour
     GameObject[] objectPrefabs;
     [SerializeField]
     Vector2 oGCellPos;
-    public Cell[] cells = new Cell[64];
-    
-    public List<CatObject> catObjects = new List<CatObject>();
+    public Cell[] cells = new Cell[Definitions.BOARD_SIZE * Definitions.BOARD_SIZE];
     int crescendoA;
     int randomInt;
     int posValue;
-    
+    public int[] startingViableCells;
+
+
     void Start()
     {
         #region Instantiate Cells
@@ -78,14 +83,65 @@ public class GameManager : MonoBehaviour
         #endregion
     }
 
-    public void EnableCells(CatObject toMove)
+    public void EnableCells(CatObject toMove, int movementType)
     {
         objectToMove = toMove;
+        viableCells.Clear();
        
         for(int i = 0; i < catObjects.Count; i++)
         {
             catObjects[i].GetComponent<BoxCollider2D>().enabled = false;
         }
+
+        for (int i = 0; i < cells.Length; i++)
+        {
+            cells[i].GetComponentInChildren<SpriteRenderer>().color = red;
+        }
+
+        #region Determine Viable Cells
+
+        switch (movementType)
+        {
+            case 0:
+                startingViableCells = GetAdjacentCells(toMove.cellPosition);
+
+                for(int i = 0; i < startingViableCells.Length; i++)
+                {
+                    if(!cells[startingViableCells[i]].occupied)
+                    {
+                        viableCells.Add(startingViableCells[i]);
+                    }
+                }
+
+                for(int i = 0; i < viableCells.Count; i++)
+                {
+                    cells[viableCells[i]].GetComponentInChildren<SpriteRenderer>().color = blue;
+                }
+
+                break;
+
+            case 1:
+                startingViableCells = GetAdjacentCells(toMove.cellPosition);
+
+                for (int i = 0; i < startingViableCells.Length; i++)
+                {
+                    if (!cells[startingViableCells[i]].occupied)
+                    {
+                        viableCells.Add(startingViableCells[i]);
+                    }
+                }
+
+                for (int i = 0; i < viableCells.Count; i++)
+                {
+                    cells[viableCells[i]].GetComponentInChildren<SpriteRenderer>().color = blue;
+                }
+
+                break;
+        }
+
+        #endregion
+
+        selectText.text = Definitions.CHOOSE_TXT;
 
         cellParent.gameObject.SetActive(true);
         cells[toMove.cellPosition].GetComponentInChildren<Animator>().SetBool("jump", true);
@@ -99,6 +155,8 @@ public class GameManager : MonoBehaviour
         {
             catObjects[i].GetComponent<BoxCollider2D>().enabled = true;
         }
+
+        selectText.text = Definitions.SELECT_TXT;
     }
 
     public int[] GetAdjacentCells(int cell)
