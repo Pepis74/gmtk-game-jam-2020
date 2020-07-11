@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
-    [HideInInspector]
-    public bool viable;
-    [HideInInspector]
-    public int cost;
+    public bool occupied;
+    public int posValue;
+    GameManager manager;
+    CatObject toFind;
     Animator anim;
 
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        manager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -24,10 +25,22 @@ public class Cell : MonoBehaviour
     void OnMouseOver()
     {
         anim.SetBool("start", true);
+        toFind = manager.catObjects.Find(x => x.cellPosition == posValue);
+
+        if(toFind != null)
+        {
+            toFind.GetComponentInChildren<Animator>().SetBool("start", true);
+        }
     }
 
     void OnMouseExit()
     {
         anim.SetBool("start", false);
+        toFind = manager.catObjects.Find(x => x.cellPosition == posValue);
+
+        if (toFind != null)
+        {
+            toFind.GetComponentInChildren<Animator>().SetBool("start", false);
+        }
     }
 }
