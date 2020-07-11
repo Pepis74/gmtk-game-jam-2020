@@ -50,4 +50,10 @@ public class Definitions
     public const int CATNIP_IDX = 6;
     public const int VACUUM_CLEANER_IDX = 7;
     public const int BAG_OF_TREATS_IDX = 8;
+
+    // Texts
+    public const string SELECT_TXT = "SELECT AN OBJECT TO MOVE OR PLACE A NEW ONE";
+    public const string CHOOSE_TXT = "CHOOSE WHERE TO MOVE THE OBJECT TO";
+    public const string PLACE_TXT = "PLACE THE OBJECT YOU'VE CHOSEN";
+    public const string CAT_TXT = "IT'S THE CAT'S TURN";
 }

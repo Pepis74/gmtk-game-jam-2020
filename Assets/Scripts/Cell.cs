@@ -16,7 +16,6 @@ public class Cell : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         

@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class CatObject : MonoBehaviour
 {
+    public string objName;
+    [TextArea(3, 10)]
+    public string descGameplay;
+    [TextArea(3, 10)]
+    public string descFlavor;
+    [SerializeField]
+    int movementType;
     public int cellPosition;
     GameManager manager;
     Animator anim;
@@ -32,6 +39,6 @@ public class CatObject : MonoBehaviour
 
     void OnMouseDown()
     {
-        manager.EnableCells(this);
+        manager.EnableCells(this, movementType);
     }
 }
