@@ -16,7 +16,6 @@ public class Definitions
     public const int BOARD_SIZE = 8;
     public const int NO_OF_BOARD_CELLS = BOARD_SIZE ^ 2;
     public const int NO_OF_ADJACENT_CELLS = 8;
-    public const int NOT_AN_ADJACENT_SLOT = 64;
 
     // Cat related constants
     public const int NODE_NOT_IN_LIST = 30000;

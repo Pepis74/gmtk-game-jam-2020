@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
@@ -16,15 +18,23 @@ public class Cat : MonoBehaviour
     {
         public float cost;
         public int[] route;
+        public int routeSize;
     }
 
     // Personality
     private Personality personality = new Personality();
+
     // Cell where the cat is located
     public int cellPosition;
 
+    // Other internal components
+    private GameManager manager;
+
     void Start()
     {
+        // Initialize internal components
+        manager = FindObjectOfType<GameManager>();
+
         // Create the personality for the cat
         GeneratePersonality();
     }
@@ -77,28 +87,104 @@ public class Cat : MonoBehaviour
     {
         // Implements the Dijkstra algorithm 
         Path optimalPath = new Path();
-        int[] unvisitedNodes = new int[Definitions.NO_OF_BOARD_CELLS];
-        int[] visitedNodes = new int[Definitions.NO_OF_BOARD_CELLS];
-        int[] tentativeDistance = new int[Definitions.NO_OF_BOARD_CELLS];
-        int timeout;
+        List<int> unvisitedNodes = new List<int>();
+        List<int> visitedNodes = new List<int>();
+        float[] tentativeDistance = new float[Definitions.NO_OF_BOARD_CELLS];
+        int[] predecessors = new int[Definitions.NO_OF_BOARD_CELLS];
+        List<int> neighbors = new List<int>();
+        float currentTentativeDistance;
+        int currentNode;
+        List<int> temporaryRoute = new List<int>();
+        int temporaryRouteSize;
+        int temporaryPredecessor;
+        int timeout = 0;
 
-        // Initialize arrays
+        // Initialize arrays & lists
         for (int i = 0; i < Definitions.NO_OF_BOARD_CELLS; i++)
         {
             unvisitedNodes[i] = i;
-            visitedNodes[i] = Definitions.NODE_NOT_IN_LIST;
             tentativeDistance[i] = Definitions.NODE_DIST_INFINITY;
+            predecessors[i] = Definitions.NODE_NOT_IN_LIST;
         }
         
         // Set tentative distance to current node to 0
         tentativeDistance[this.cellPosition] = 0;
 
-        //while ()
-        //{
+        while (!visitedNodes.Contains(cell) || timeout < Definitions.MAX_DIJKSTRA_ITERATIONS)
+        {   
+            // Select the next node
+            currentNode = GetLowestArrayValueInsidePos(tentativeDistance, unvisitedNodes);
 
-        //}
-        
+            // Get its neighbors
+            neighbors = manager.GetAdjacentCells(currentNode);
+
+            // Eliminate visited neighbors
+            for (int i = 0; i < visitedNodes.Count; i++)
+            {
+                if (neighbors.Contains(visitedNodes[i]))
+                {
+                    neighbors.Remove(visitedNodes[i]);
+                }
+            }
+
+            for (int i = 0; i < neighbors.Count; i++)
+            {
+                // Calculate the tentative distance for this path
+                currentTentativeDistance = tentativeDistance[currentNode] + manager.cells[neighbors[i]].cost;
+
+                if (tentativeDistance[neighbors[i]] > currentTentativeDistance)
+                {
+                    tentativeDistance[neighbors[i]] = currentTentativeDistance;
+                    predecessors[neighbors[i]] = currentNode;
+                }
+            }
+
+            // Once all is updated move the node from the unvisited list to the visited list
+            unvisitedNodes.Remove(currentNode);
+            visitedNodes.Add(currentNode);
+
+            timeout++;
+        }
+
+        if (timeout >= Definitions.MAX_DIJKSTRA_ITERATIONS)
+        {
+            Debug.Log("Error: Reached max allowed number of Dijkstra iterations");
+        }
+
+        // Compile results
+        optimalPath.cost = tentativeDistance[cell];
+
+        temporaryRouteSize = 0;
+        do
+        {
+            temporaryPredecessor = predecessors[cell];
+            temporaryRoute.Add(temporaryPredecessor);
+            temporaryRouteSize++;
+        }
+        while (temporaryPredecessor != this.cellPosition);
+
+        optimalPath.route = temporaryRoute.ToArray();
+        optimalPath.routeSize = temporaryRouteSize;
+
         return optimalPath;
     }
 
+    int GetLowestArrayValueInsidePos(float[] mainArray, List<int> containingList)
+    {
+        int lowestValuePos;
+        bool isValueInArray;
+        do
+        {
+            lowestValuePos = manager.GetLowestArrayValuePos(mainArray);
+            isValueInArray = containingList.Contains(lowestValuePos);
+
+            if (!isValueInArray)
+            {
+                mainArray[lowestValuePos] = Definitions.NODE_DIST_INFINITY;
+            }
+        }
+        while (!isValueInArray);
+
+        return lowestValuePos;
+    }
 }

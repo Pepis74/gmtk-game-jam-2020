@@ -278,22 +278,24 @@ public class GameManager : MonoBehaviour
         return cellsInRadius;
     }
 
-    public int getLowestArrayValue(int[] array)
+    public int GetLowestArrayValuePos(float[] array)
     {
-        int lowestValue = 1;
+        int lowestValue = array[0];
+        int lowestValuePos = 0;
 
         for (int i = 1; i < array.Length; i++)
         {
             if (array[i] < lowestValue)
             {
+                lowestValuePos = i;
                 lowestValue = array[i];
             }
         }
 
-        return lowestValue;
+        return lowestValuePos;
     }
 
-    public bool isValueInArray(int value, int[] array)
+    public bool IsValueInArray(int value, int[] array)
     {
         bool valueFound = false;
 

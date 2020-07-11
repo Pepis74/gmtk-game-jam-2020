@@ -7,6 +7,7 @@ public class Cell : MonoBehaviour
     public bool occupied;
     public int posValue;
     public float zOffset;
+    public float cost;
     GameManager manager;
     CatObject toFind;
     Animator anim;
