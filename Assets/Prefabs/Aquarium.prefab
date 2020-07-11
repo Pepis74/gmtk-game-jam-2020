@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7315780961139476269}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.53, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7315780962175754538}
@@ -59,13 +59,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.023913812, y: 0.16600896}
-      - {x: -0.023765672, y: 0.16567673}
-      - {x: -0.09514479, y: 0.11674048}
-      - {x: -0.09743593, y: -0.11089687}
-      - {x: -0.00004166877, y: -0.17905991}
-      - {x: 0.09662393, y: -0.11572553}
-      - {x: 0.09489841, y: 0.11663492}
+    - - {x: 0.023142703, y: 0.13130867}
+      - {x: -0.02222343, y: 0.1317476}
+      - {x: -0.090518095, y: 0.08049798}
+      - {x: -0.09358035, y: -0.07928109}
+      - {x: -0.00081280345, y: -0.13973299}
+      - {x: 0.09662393, y: -0.0810253}
+      - {x: 0.09566952, y: 0.081163526}
 --- !u!114 &7315780961139476275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,10 +81,10 @@ MonoBehaviour:
   objName: 
   descGameplay: 
   descFlavor: 
-  movementType: 0
+  movementType: 1
   cellPosition: 0
   cellToMoveTo: 0
-  yOffset: 0.11
+  yOffset: 0.075
   xOffset: 0
   move: 0
 --- !u!1 &7315780961184451854
@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7315780961184451854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.11, z: 0.1}
+  m_LocalPosition: {x: 0, y: -0.075, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7315780961139476268}
@@ -158,7 +158,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 61320b0a030e95c4eb503e613b1852d7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7490196}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

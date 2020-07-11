@@ -161,9 +161,14 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.09237725, y: 0.16450895}
+      - {x: -0.015776351, y: 0.091509745}
+      - {x: -0.021172747, y: -0.060407523}
       - {x: -0.09161064, y: -0.11118017}
       - {x: -0.00017674174, y: -0.17564909}
       - {x: 0.0932515, y: -0.11391051}
+      - {x: 0.02010114, y: -0.062601656}
+      - {x: 0.020922447, y: -0.020513117}
+      - {x: 0.097169995, y: 0.01737754}
       - {x: 0.09674848, y: 0.16598178}
 --- !u!114 &9060014365300902268
 MonoBehaviour:
@@ -180,7 +185,7 @@ MonoBehaviour:
   objName: 
   descGameplay: 
   descFlavor: 
-  movementType: 0
+  movementType: 2
   cellPosition: 0
   cellToMoveTo: 0
   yOffset: 0.11
@@ -257,7 +262,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b76300e66546f794891a612dbef5ba6d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7490196}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

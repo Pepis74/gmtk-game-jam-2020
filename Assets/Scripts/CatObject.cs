@@ -55,8 +55,9 @@ public class CatObject : MonoBehaviour
         if (move)
         {
             transform.localPosition = Vector3.MoveTowards(new Vector3(transform.localPosition.x, transform.localPosition.y, manager.cells[cellPosition].zOffset), new Vector3(manager.cells[cellToMoveTo].transform.localPosition.x + xOffset, manager.cells[cellToMoveTo].transform.localPosition.y + yOffset, manager.cells[cellPosition].zOffset), Definitions.CATOBJ_SPD * Time.deltaTime);
+            transform.localPosition = new Vector3(Mathf.Round(transform.localPosition.x * 1000) / 1000, Mathf.Round(transform.localPosition.y * 1000) / 1000, transform.localPosition.z);
 
-            if(transform.localPosition == manager.cells[cellToMoveTo].transform.localPosition)
+            if(transform.localPosition == new Vector3(manager.cells[cellToMoveTo].transform.localPosition.x + xOffset, manager.cells[cellToMoveTo].transform.localPosition.y + yOffset, transform.localPosition.z))
             {
                 move = false;
                 manager.cells[cellPosition].occupied = false;
