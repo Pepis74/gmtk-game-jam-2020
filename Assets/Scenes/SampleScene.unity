@@ -544,8 +544,8 @@ MonoBehaviour:
   cell: {fileID: 2104927738216717063, guid: 344689ac74fd95b42a16a2b22463b7c3, type: 3}
   objectPrefabs:
   - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
-  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
-  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
+  - {fileID: 3979435258255008460, guid: 35d062d631bdabd4495347ce1122b0b0, type: 3}
+  - {fileID: 7315780961139476269, guid: d53d5ae36a58671439aaf3c5a5e91bdc, type: 3}
   - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
   - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
   oGCellPos: {x: 0, y: 0.42}
@@ -614,7 +614,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  startingViableCells: 
 --- !u!1 &1394142431
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +638,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394142431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.005, y: -0.175, z: -0.15}
+  m_LocalPosition: {x: -0.005, y: -0.175, z: -0.101}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1387450468}

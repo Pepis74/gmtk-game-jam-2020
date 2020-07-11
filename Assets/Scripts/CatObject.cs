@@ -13,6 +13,8 @@ public class CatObject : MonoBehaviour
     int movementType;
     public int cellPosition;
     public int cellToMoveTo;
+    public float yOffset;
+    public float xOffset;
     GameManager manager;
     Rigidbody2D rig;
     UIManager uI;
@@ -52,13 +54,14 @@ public class CatObject : MonoBehaviour
 
         if (move)
         {
-            transform.localPosition = Vector3.MoveTowards(new Vector3(transform.localPosition.x, transform.localPosition.y, 0), new Vector3(manager.cells[cellToMoveTo].transform.localPosition.x, manager.cells[cellToMoveTo].transform.localPosition.y + 0.03f, 0), Definitions.CATOBJ_SPD * Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(new Vector3(transform.localPosition.x, transform.localPosition.y, manager.cells[cellPosition].zOffset), new Vector3(manager.cells[cellToMoveTo].transform.localPosition.x + xOffset, manager.cells[cellToMoveTo].transform.localPosition.y + yOffset, manager.cells[cellPosition].zOffset), Definitions.CATOBJ_SPD * Time.deltaTime);
 
             if(transform.localPosition == manager.cells[cellToMoveTo].transform.localPosition)
             {
                 move = false;
                 manager.cells[cellPosition].occupied = false;
                 cellPosition = cellToMoveTo;
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, manager.cells[cellPosition].zOffset);
                 manager.cells[cellPosition].occupied = true;
             }
         }
