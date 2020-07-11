@@ -69,10 +69,63 @@ public class Cat : MonoBehaviour
     int[] GetAdjacentCells(int cell)
     {
         int c = 0;
+        bool is_top;
+        bool is_bot;
+        bool is_lft;
+        bool is_rgt;
+
+        // Fill empty vector
         int[] adjacentCells = new int[Definitions.NO_OF_ADJACENT_CELLS];
         for (int i = 0; i < adjacentCells.Length; i++)
         {
             adjacentCells[i] = Definitions.NOT_AN_ADJACENT_SLOT;
+        }
+
+        // Detect postion of the cell in the board
+        is_top = (cell / Definitions.BOARD_SIZE == 0);
+        is_bot = (cell / Definitions.BOARD_SIZE == Definitions.BOARD_SIZE - 1);
+        is_lft = (cell % Definitions.BOARD_SIZE == 0);
+        is_rgt = (cell % Definitions.BOARD_SIZE == Definitions.BOARD_SIZE - 1);
+
+        // Detect adjacent cells based on position
+        if (!is_top)
+        {
+            adjacentCells[c++] = cell - Definitions.BOARD_SIZE;
+        }
+
+        if (!is_bot)
+        {
+            adjacentCells[c++] = cell + Definitions.BOARD_SIZE;
+        }
+
+        if (!is_lft)
+        {
+            adjacentCells[c++] = cell - 1;
+        }
+
+        if (!is_rgt)
+        {
+            adjacentCells[c++] = cell + 1;
+        }
+
+        if (!(is_top && is_lft))
+        {
+            adjacentCells[c++] = cell - Definitions.BOARD_SIZE - 1;
+        }
+
+        if (!(is_top && is_rgt))
+        {
+            adjacentCells[c++] = cell - Definitions.BOARD_SIZE + 1;
+        }
+
+        if (!(is_bot && is_lft))
+        {
+            adjacentCells[c++] = cell + Definitions.BOARD_SIZE - 1;
+        }
+
+        if (!(is_bot && !is_rgt))
+        {
+            adjacentCells[c++] = cell + Definitions.BOARD_SIZE + 1;
         }
 
         return adjacentCells;

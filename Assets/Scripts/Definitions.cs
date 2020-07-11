@@ -15,7 +15,7 @@ public class Definitions
     // Board related constants
     public const int BOARD_SIZE = 8;
     public const int NO_OF_BOARD_CELLS = BOARD_SIZE ^ 2;
-    public const int NO_OF_ADJACENT_CELLS = 7;
+    public const int NO_OF_ADJACENT_CELLS = 8;
     public const int NOT_AN_ADJACENT_SLOT = 64;
 
     // Cat personality constants
