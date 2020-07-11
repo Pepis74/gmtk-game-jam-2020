@@ -2,8 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Definitions : MonoBehaviour
+public class Definitions
 {
     // Define constant values here
+
+    // Generic constants
+    public const int NO_OF_VALUABLE_OBJS = 5;
+    public const int NO_OF_EFFECT_OBJS = 4;
+    public const int NO_OF_OBJECTS = NO_OF_VALUABLE_OBJS + NO_OF_EFFECT_OBJS;
     public const int NO_OF_TOTD_SLOTS = 4;
+
+    // Object indexes
+    public const int ASH_URN_IDX = 0;
+    public const int AQUARIUM_IDX = 1;
+    public const int FAVORITE_JACKET_IDX = 2;
+    public const int COMPUTER_IDX = 3;
+    public const int JASMINE_IDX = 4;
+    public const int AIR_FRESHENER_IDX = 5;
+    public const int CATNIP_IDX = 6;
+    public const int VACUUM_CLEANER_IDX = 7;
+    public const int BAG_OF_TREATS_IDX = 8;
 }

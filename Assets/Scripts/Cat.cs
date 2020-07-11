@@ -8,10 +8,13 @@ public class Cat : MonoBehaviour
     struct Personality
     {
         public int[] stamina;
+        public int[] sleep_chances;
+        public int[] locker_chances;
+        public int[] appeal_modifiers;
     }
 
     // Personality
-    Personality pers = new Personality();
+    private Personality pers = new Personality();
     // Cell where the cat is located
     public int position;
     // Max movement range of the cat. Personality Stat v
@@ -38,6 +41,9 @@ public class Cat : MonoBehaviour
     {
         // TODO
         pers.stamina = new int[Definitions.NO_OF_TOTD_SLOTS];
+        pers.sleep_chances = new int[Definitions.NO_OF_TOTD_SLOTS];
+        pers.locker_chances = new int[Definitions.NO_OF_TOTD_SLOTS];
+        pers.appeal_modifiers = new int[Definitions.NO_OF_OBJECTS];
     }
 
     void UpdateStatsTotd()
