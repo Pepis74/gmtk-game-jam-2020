@@ -162,9 +162,103 @@ public class GameManager : MonoBehaviour
 
     public List<int> getMovementRadius(int cell, int radius)
     {
-        List<int> cellsInRadius = new List<int>;
-        List<int> radiusBoundary = new List<int>;
+        int dstToTop;
+        int dstToBot;
+        int dstToLft;
+        int dstToRgt;
 
+        int coordX = 0;
+        int coordY = 0;
+
+        int increments;
+        int iterationCount;
+        int maxIterations;
+        bool iterateOnX;
+        bool positiveVal;
+
+        int newCell;
+
+        List<int> cellsInRadius = new List<int>();
+
+        // Detect distances from the cell to the edges of the board
+        dstToTop = cell / Definitions.BOARD_SIZE;
+        dstToBot = (Definitions.BOARD_SIZE - 1) - (cell / Definitions.BOARD_SIZE);
+        dstToLft = cell % Definitions.BOARD_SIZE;
+        dstToRgt = (Definitions.BOARD_SIZE - 1) - (cell % Definitions.BOARD_SIZE);
+
+        // Iterate in an helicoidal manner, limited by the distances
+        maxIterations = 1 + radius * 4;
+        iterationCount = 0;
+        increments = 1;
+        iterateOnX = true;
+        positiveVal = true;
+
+        for (int j = 0; j < maxIterations; j++)
+        {
+            // Depending on the state of the helix update the coordinates
+            for (int i = 0; i < increments; i++)
+            {
+                if (iterateOnX)
+                {
+                    if (positiveVal)
+                    {
+                        if (coordX + 1 <= dstToTop)
+                        {
+                            coordX++;
+                        }
+                    }
+                    else
+                    {
+                        if (-(coordX - 1) <= dstToBot)
+                        {
+                            coordX--;
+                        }
+
+                    }
+                }
+                else
+                {
+                    if (positiveVal)
+                    {
+                        if (coordY + 1 <= dstToRgt)
+                        {
+                            coordY++;
+                        }
+                    }
+                    else
+                    {
+                        if (-(coordY - 1) <= dstToLft)
+                        {
+                            coordY--;
+                        }
+                    }
+                }
+
+                // Following the coordinates add the value to the list
+                newCell = cell + coordX + (coordY * Definitions.BOARD_SIZE);
+                if (!cellsInRadius.Contains(newCell))
+                {
+                    cellsInRadius.Add(newCell);
+                }
+
+            }
+
+            // Control the state of the helix
+            if (iterationCount % 2 == 0)
+            {
+                positiveVal = !positiveVal;
+            }
+            else
+            {
+                if (j != maxIterations - 2)
+                {
+                    increments++;
+                }
+            }
+
+            iterateOnX = !iterateOnX;
+            iterationCount++;
+        }
 
         return cellsInRadius;
     }
