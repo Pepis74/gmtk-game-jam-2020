@@ -59,6 +59,9 @@ public class GameManager : MonoBehaviour
             crescendoA += 1;
         }
 
+        cells[20].occupied = true;
+        cells[26].occupied = true;
+
         #endregion
 
         #region Instantiate Valuables
@@ -121,7 +124,68 @@ public class GameManager : MonoBehaviour
                 break;
 
             case 1:
-                startingViableCells = GetAdjacentCells(toMove.cellPosition);
+
+                for(int i = toMove.cellPosition; i > 0; i -= Definitions.BOARD_SIZE + 1)
+                {
+                    if(!cells[i].occupied)
+                    {
+                        viableCells.Add(i);
+                    }
+
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                for (int i = toMove.cellPosition; i > 0; i -= Definitions.BOARD_SIZE - 1)
+                {
+                    if (!cells[i].occupied)
+                    {
+                        viableCells.Add(i);
+                    }
+
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                for (int i = toMove.cellPosition; i < 64; i += Definitions.BOARD_SIZE + 1)
+                {
+                    if (!cells[i].occupied)
+                    {
+                        viableCells.Add(i);
+                    }
+
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                for (int i = toMove.cellPosition; i < 64; i += Definitions.BOARD_SIZE - 1)
+                {
+                    if (!cells[i].occupied)
+                    {
+                        viableCells.Add(i);
+                    }
+
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < viableCells.Count; i++)
+                {
+                    cells[viableCells[i]].GetComponentInChildren<SpriteRenderer>().color = blue;
+                }
+
+                break;
+
+            case 2:
+                startingViableCells = GetAdjacentCells(toMove.cellPosition, 2);
 
                 for (int i = 0; i < startingViableCells.Count; i++)
                 {

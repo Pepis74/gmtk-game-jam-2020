@@ -185,7 +185,7 @@ MonoBehaviour:
   objName: 
   descGameplay: 
   descFlavor: 
-  movementType: 0
+  movementType: 2
   cellPosition: 0
   cellToMoveTo: 0
   yOffset: 0.11
