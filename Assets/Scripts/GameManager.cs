@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
         switch (movementType)
         {
             case 0:
-                startingViableCells = GetAdjacentCells(toMove.cellPosition);
+                startingViableCells = GetMovementRadius(toMove.cellPosition, 1);
 
                 for (int i = 0; i < startingViableCells.Count; i++)
                 {
@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
         return adjacentCells;
     }
 
-    public List<int> getMovementRadius(int cell, int radius)
+    public List<int> GetMovementRadius(int cell, int radius)
     {
         int dstToTop;
         int dstToBot;
