@@ -12,6 +12,23 @@ public class Definitions
     public const int NO_OF_OBJECTS = NO_OF_VALUABLE_OBJS + NO_OF_EFFECT_OBJS;
     public const int NO_OF_TOTD_SLOTS = 4;
 
+    // Cat personality constants
+    public const int NO_OF_FUR_COLORS = 1;
+    public const float MAX_STAMINA_BASE = 1.0f;
+    public const float MIN_STAMINA_BASE = 0.8f;
+    public const float MAX_STAMINA_MOD = 1.2f;
+    public const float MIN_STAMINA_MOD = 0.8f;
+    public const float MAX_SLEEP_BASE = 1.0f;
+    public const float MIN_SLEEP_BASE = 0.8f;
+    public const float MAX_SLEEP_MOD = 1.2f;
+    public const float MIN_SLEEP_MOD = 0.8f;
+    public const float MAX_LOKER_BASE = 1.0f;
+    public const float MIN_LOKER_BASE = 0.8f;
+    public const float MAX_LOKER_MOD = 1.2f;
+    public const float MIN_LOKER_MOD = 0.8f;
+    public const float MAX_APPEAL_MOD = 1.2f;
+    public const float MIN_APPEAL_MOD = 0.8f;
+
     // Object indexes
     public const int ASH_URN_IDX = 0;
     public const int AQUARIUM_IDX = 1;

@@ -1,49 +1,63 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
     // Personality structure
     struct Personality
     {
-        public int[] stamina;
-        public int[] sleep_chances;
-        public int[] locker_chances;
-        public int[] appeal_modifiers;
+        public float[] stamina;
+        public float[] sleepChances;
+        public float[] lokerChances;
+        public float[] appealModifiers;
     }
 
     // Personality
-    private Personality pers = new Personality();
+    private Personality personality = new Personality();
     // Cell where the cat is located
-    public int position;
-    // Max movement range of the cat. Personality Stat v
-    public int stamina;
-    // 
-    public float sleep_chances;
-    public float locker_chances;
-    public int[] personality_mods;
-    public int[][] totd_mods;
-   
-    // Start is called before the first frame update
+    public int cellPosition;
+
     void Start()
     {
-        
+        // Create the personality for the cat
+        GeneratePersonality();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void GeneratePersonality()
     {
-        // TODO
-        pers.stamina = new int[Definitions.NO_OF_TOTD_SLOTS];
-        pers.sleep_chances = new int[Definitions.NO_OF_TOTD_SLOTS];
-        pers.locker_chances = new int[Definitions.NO_OF_TOTD_SLOTS];
-        pers.appeal_modifiers = new int[Definitions.NO_OF_OBJECTS];
+        float baseStamina;
+        float baseSleep;
+        float baseLoker;
+
+        personality.stamina = new float[Definitions.NO_OF_TOTD_SLOTS];
+        personality.sleepChances = new float[Definitions.NO_OF_TOTD_SLOTS];
+        personality.lokerChances = new float[Definitions.NO_OF_TOTD_SLOTS];
+        personality.appealModifiers = new float[Definitions.NO_OF_OBJECTS];
+
+        // Select a random fur 
+
+        // Generate base stats
+        baseStamina = Random.Range(Definitions.MIN_STAMINA_BASE, Definitions.MAX_STAMINA_BASE);
+        baseSleep = Random.Range(Definitions.MIN_SLEEP_BASE, Definitions.MAX_SLEEP_BASE);
+        baseLoker = Random.Range(Definitions.MIN_LOKER_BASE, Definitions.MAX_LOKER_BASE);
+
+        // Generate totd stats
+        for (int i = 0; i < Definitions.NO_OF_TOTD_SLOTS; i++)
+        {
+            personality.stamina[i] = baseStamina * Random.Range(Definitions.MIN_STAMINA_MOD, Definitions.MAX_STAMINA_MOD);
+            personality.sleepChances[i] = baseSleep * Random.Range(Definitions.MIN_SLEEP_MOD, Definitions.MAX_SLEEP_MOD);
+            personality.lokerChances[i] = baseLoker * Random.Range(Definitions.MIN_LOKER_MOD, Definitions.MAX_LOKER_MOD);
+        }
+
+        // Generate appeal
+        for (int i = 0; i < Definitions.NO_OF_OBJECTS; i++)
+        {
+            personality.appealModifiers[i] = Random.Range(Definitions.MIN_APPEAL_MOD, Definitions.MAX_APPEAL_MOD);
+        }
     }
 
     void UpdateStatsTotd()
