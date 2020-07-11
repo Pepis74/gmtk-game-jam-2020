@@ -60,15 +60,22 @@ public class Cat : MonoBehaviour
         }
     }
 
-    void UpdateStatsTotd()
-    {
-        // TODO
-    }
-
     int GetNextCell(int position, int stamina)
     {
         // TODO 
         return 0;
+    }
+
+    int[] GetAdjacentCells(int cell)
+    {
+        int c = 0;
+        int[] adjacentCells = new int[Definitions.NO_OF_ADJACENT_CELLS];
+        for (int i = 0; i < adjacentCells.Length; i++)
+        {
+            adjacentCells[i] = Definitions.NOT_AN_ADJACENT_SLOT;
+        }
+
+        return adjacentCells;
     }
 
 

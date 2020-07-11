@@ -12,6 +12,12 @@ public class Definitions
     public const int NO_OF_OBJECTS = NO_OF_VALUABLE_OBJS + NO_OF_EFFECT_OBJS;
     public const int NO_OF_TOTD_SLOTS = 4;
 
+    // Board related constants
+    public const int BOARD_SIZE = 8;
+    public const int NO_OF_BOARD_CELLS = BOARD_SIZE ^ 2;
+    public const int NO_OF_ADJACENT_CELLS = 7;
+    public const int NOT_AN_ADJACENT_SLOT = 64;
+
     // Cat personality constants
     public const int NO_OF_FUR_COLORS = 1;
     public const float MAX_STAMINA_BASE = 1.0f;
