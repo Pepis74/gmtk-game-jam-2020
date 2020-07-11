@@ -344,7 +344,7 @@ public class GameManager : MonoBehaviour
 
     public int GetLowestArrayValuePos(float[] array)
     {
-        int lowestValue = array[0];
+        float lowestValue = array[0];
         int lowestValuePos = 0;
 
         for (int i = 1; i < array.Length; i++)

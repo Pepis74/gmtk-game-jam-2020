@@ -10,7 +10,7 @@ public class Definitions
     public const int NO_OF_VALUABLE_OBJS = 5;
     public const int NO_OF_EFFECT_OBJS = 4;
     public const int NO_OF_OBJECTS = NO_OF_VALUABLE_OBJS + NO_OF_EFFECT_OBJS;
-    public const int NO_OF_TOTD_SLOTS = 4;
+    public const int NO_OF_TOTD_SLOTS = 1;
 
     // Board related constants
     public const int BOARD_SIZE = 8;

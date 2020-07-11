@@ -27,6 +27,9 @@ public class Cat : MonoBehaviour
     // Cell where the cat is located
     public int cellPosition;
 
+    // Cell the cat is aiming for
+    public int memory;
+
     // Other internal components
     private GameManager manager;
 
