@@ -36,11 +36,20 @@ public class Cell : MonoBehaviour
     void OnMouseExit()
     {
         anim.SetBool("start", false);
+        anim.SetBool("jump", false);
         toFind = manager.catObjects.Find(x => x.cellPosition == posValue);
 
         if (toFind != null)
         {
             toFind.GetComponentInChildren<Animator>().SetBool("start", false);
+        }
+    }
+
+    void OnMouseDown()
+    {
+        if(manager.objectToMove.cellPosition == posValue)
+        {
+            manager.DisableCells();
         }
     }
 }

@@ -5,15 +5,33 @@ using UnityEngine;
 public class CatObject : MonoBehaviour
 {
     public int cellPosition;
+    GameManager manager;
+    Animator anim;
 
     void Start()
     {
-        
+        anim = GetComponentInChildren<Animator>();
+        manager = FindObjectOfType<GameManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnMouseOver()
     {
-        
+        if(!manager.cellParent.gameObject.activeSelf)
+        {
+            anim.SetBool("start", true);
+        }    
+    }
+
+    void OnMouseExit()
+    {
+        if (!manager.cellParent.gameObject.activeSelf)
+        {
+            anim.SetBool("start", false);
+        }
+    }
+
+    void OnMouseDown()
+    {
+        manager.EnableCells(this);
     }
 }

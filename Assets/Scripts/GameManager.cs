@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Transform cellParent;
     [SerializeField]
-    Transform cellParent;
+    Color blue;
+    [SerializeField]
+    Color red;
     [SerializeField]
     Transform objectParent;
+    public CatObject objectToMove;
     [SerializeField]
     GameObject cell;
     GameObject ins;
     [SerializeField]
+    GameObject[] objectPrefabs;
+    [SerializeField]
     Vector2 oGCellPos;
     public Cell[] cells = new Cell[64];
-    [SerializeField]
-    GameObject[] objectPrefabs;
+    
     public List<CatObject> catObjects = new List<CatObject>();
     int crescendoA;
     int randomInt;
@@ -71,5 +76,28 @@ public class GameManager : MonoBehaviour
         }
 
         #endregion
+    }
+
+    public void EnableCells(CatObject toMove)
+    {
+        objectToMove = toMove;
+       
+        for(int i = 0; i < catObjects.Count; i++)
+        {
+            catObjects[i].GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+        cellParent.gameObject.SetActive(true);
+        cells[toMove.cellPosition].GetComponentInChildren<Animator>().SetBool("jump", true);
+    }
+
+    public void DisableCells()
+    {
+        cellParent.gameObject.SetActive(false);
+
+        for (int i = 0; i < catObjects.Count; i++)
+        {
+            catObjects[i].GetComponent<BoxCollider2D>().enabled = true;
+        }
     }
 }

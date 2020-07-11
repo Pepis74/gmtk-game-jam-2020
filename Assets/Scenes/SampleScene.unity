@@ -301,8 +301,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellParent: {fileID: 2122885061}
+  blue: {r: 0, g: 0.78039217, b: 1, a: 0.6}
+  red: {r: 1, g: 0.32941177, b: 0, a: 0.6}
   objectParent: {fileID: 1394142432}
+  objectToMove: {fileID: 0}
   cell: {fileID: 2104927738216717063, guid: 344689ac74fd95b42a16a2b22463b7c3, type: 3}
+  objectPrefabs:
+  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
+  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
+  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
+  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
+  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
   oGCellPos: {x: 0, y: 0.42}
   cells:
   - {fileID: 0}
@@ -369,12 +378,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  objectPrefabs:
-  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
-  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
-  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
-  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
-  - {fileID: 4099816412156027524, guid: 86f44da0fdf1dde448b1c64d681b99de, type: 3}
   catObjects: []
 --- !u!1 &1394142431
 GameObject:
@@ -400,7 +403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394142431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.005, y: -0.175, z: -0.1}
+  m_LocalPosition: {x: -0.005, y: -0.175, z: -0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1387450468}
@@ -660,7 +663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2122885061
 Transform:
   m_ObjectHideFlags: 0
