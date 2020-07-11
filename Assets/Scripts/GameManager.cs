@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,8 +10,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Color red;
     [SerializeField]
+    Text selectText;
+    [SerializeField]
     Transform objectParent;
     public CatObject objectToMove;
+    public List<CatObject> catObjects = new List<CatObject>();
+    List<int> viableCells = new List<int>();
     [SerializeField]
     GameObject cell;
     GameObject ins;
@@ -18,13 +23,13 @@ public class GameManager : MonoBehaviour
     GameObject[] objectPrefabs;
     [SerializeField]
     Vector2 oGCellPos;
-    public Cell[] cells = new Cell[64];
-    
-    public List<CatObject> catObjects = new List<CatObject>();
+    public Cell[] cells = new Cell[Definitions.BOARD_SIZE * Definitions.BOARD_SIZE];
     int crescendoA;
     int randomInt;
     int posValue;
-    
+    public List<int> startingViableCells = new List<int>();
+
+
     void Start()
     {
         #region Instantiate Cells
@@ -33,7 +38,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < 64; i++)
         {
-            if(crescendoA == 8)
+            if (crescendoA == 8)
             {
                 crescendoA = 0;
                 oGCellPos = new Vector2(oGCellPos.x + 0.09f * 9, oGCellPos.y + 0.06f * 7);
@@ -57,7 +62,7 @@ public class GameManager : MonoBehaviour
 
         #region Instantiate Valuables
 
-        for(int i = 0; i < objectPrefabs.Length; i++)
+        for (int i = 0; i < objectPrefabs.Length; i++)
         {
             do
             {
@@ -77,14 +82,65 @@ public class GameManager : MonoBehaviour
         #endregion
     }
 
-    public void EnableCells(CatObject toMove)
+    public void EnableCells(CatObject toMove, int movementType)
     {
         objectToMove = toMove;
-       
-        for(int i = 0; i < catObjects.Count; i++)
+        viableCells.Clear();
+
+        for (int i = 0; i < catObjects.Count; i++)
         {
             catObjects[i].GetComponent<Collider2D>().enabled = false;
         }
+
+        for (int i = 0; i < cells.Length; i++)
+        {
+            cells[i].GetComponentInChildren<SpriteRenderer>().color = red;
+        }
+
+        #region Determine Viable Cells
+
+        switch (movementType)
+        {
+            case 0:
+                startingViableCells = GetAdjacentCells(toMove.cellPosition);
+
+                for (int i = 0; i < startingViableCells.Count; i++)
+                {
+                    if (!cells[startingViableCells[i]].occupied)
+                    {
+                        viableCells.Add(startingViableCells[i]);
+                    }
+                }
+
+                for (int i = 0; i < viableCells.Count; i++)
+                {
+                    cells[viableCells[i]].GetComponentInChildren<SpriteRenderer>().color = blue;
+                }
+
+                break;
+
+            case 1:
+                startingViableCells = GetAdjacentCells(toMove.cellPosition);
+
+                for (int i = 0; i < startingViableCells.Count; i++)
+                {
+                    if (!cells[startingViableCells[i]].occupied)
+                    {
+                        viableCells.Add(startingViableCells[i]);
+                    }
+                }
+
+                for (int i = 0; i < viableCells.Count; i++)
+                {
+                    cells[viableCells[i]].GetComponentInChildren<SpriteRenderer>().color = blue;
+                }
+
+                break;
+        }
+
+        #endregion
+
+        selectText.text = Definitions.CHOOSE_TXT;
 
         cellParent.gameObject.SetActive(true);
         cells[toMove.cellPosition].GetComponentInChildren<Animator>().SetBool("jump", true);
@@ -98,6 +154,8 @@ public class GameManager : MonoBehaviour
         {
             catObjects[i].GetComponent<Collider2D>().enabled = true;
         }
+
+        selectText.text = Definitions.SELECT_TXT;
     }
 
     public List<int> GetAdjacentCells(int cell)
@@ -107,7 +165,7 @@ public class GameManager : MonoBehaviour
         bool is_lft;
         bool is_rgt;
 
-        List<int> adjacentCells = new List<int>;
+        List<int> adjacentCells = new List<int>();
 
         // Detect postion of the cell in the board
         is_top = (cell / Definitions.BOARD_SIZE == 0);
