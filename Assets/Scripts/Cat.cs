@@ -377,10 +377,92 @@ public class Cat : MonoBehaviour
                 roundedStamina = Mathf.CeilToInt(personality.stamina[totd]);
             }
             
+            // Adjust stamina to array size and avoid going directly to the objective cell
+            if (roundedStamina >= objectivePath.routeSize - 1)
+            {
+                roundedStamina = objectivePath.routeSize - 2;
+            }
+
             nextCell = objectivePath.route[roundedStamina];
         }
 
         return nextCell;
+    }
+
+    void InteractWithObject()
+    {
+        // Locate the most interesting object surrounding the cat and interact with it
+        List<int> surroundingCells;
+        CatObject ToFind;
+        int selectedCell = Definitions.NOT_SUITABLE_CELL;
+        float tempInterest;
+        float maxInterest = 0.0f;  
+        
+        surroundingCells = manager.GetAdjacentCells(cellPosition);
+
+        // Calculate the interest factor
+        for (int i = 0; i < surroundingCells.Count; i++)
+        {
+            ToFind = manager.catObjects.Find(x => x.cellPosition == surroundingCells[i]);
+            tempInterest = ToFind.attractiveness;
+
+            switch (ToFind.objName)
+            {
+                case "ASH URN":
+                    tempInterest = tempInterest * personality.appealModifiers[Definitions.ASH_URN_IDX];
+                    break;
+
+                case "AQUARIUM":
+                    tempInterest = tempInterest * personality.appealModifiers[Definitions.AQUARIUM_IDX];
+                    break;
+
+                case "FAVORITE JACKET":
+                    tempInterest = tempInterest * personality.appealModifiers[Definitions.FAVORITE_JACKET_IDX];
+                    break;
+
+                case "COMPUTER":
+                    tempInterest = tempInterest * personality.appealModifiers[Definitions.COMPUTER_IDX];
+                    break;
+
+                case "JASMINE":
+                    tempInterest = tempInterest * personality.appealModifiers[Definitions.JASMINE_IDX];
+                    break;
+
+                case "AIR FRESHENER":
+                    tempInterest = tempInterest * personality.appealModifiers[Definitions.AIR_FRESHENER_IDX];
+                    break;
+
+                case "CATNIP":
+                    tempInterest = tempInterest * personality.appealModifiers[Definitions.CATNIP_IDX];
+                    break;
+
+                case "VACUUM CLEANER":
+                    tempInterest = tempInterest * personality.appealModifiers[Definitions.VACUUM_CLEANER_IDX];
+                    break;
+
+                case "BAG OF TREATS":
+                    tempInterest = tempInterest * personality.appealModifiers[Definitions.BAG_OF_TREATS_IDX];
+                    break;
+            }
+
+            // Save highest interest
+            if (tempInterest > maxInterest)
+            {
+                maxInterest = tempInterest;
+                selectedCell = surroundingCells[i];
+            }
+        }
+
+        // Execute the action in the selected object
+        if (selectedCell != Definitions.NOT_SUITABLE_CELL)
+        {
+            ToFind = manager.catObjects.Find(x => x.cellPosition == selectedCell);
+
+            if (ToFind.GetComponent<Valuable>())
+            {
+                ToFind.GetComponent<Valuable>().CatInteraction();
+            }
+        }
     }
 
     Path GetOptimalPathToCell(int cell)
