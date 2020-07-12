@@ -605,6 +605,12 @@ public class Cat : MonoBehaviour
                 }
             }
 
+            // If trapped break the loop
+            if (neighbors.Count == 0 && l == 0)
+            {
+                break;
+            }
+
             for (int i = 0; i < neighbors.Count; i++)
             {
                 // Calculate the tentative distance for this path
@@ -638,6 +644,12 @@ public class Cat : MonoBehaviour
         temporaryRouteSize++;
         for (int i = 0; i < (Definitions.MAX_DIJKSTRA_ITERATIONS / 100); i++)
         {
+            // Emergency trick bugfixing
+            if (temporaryPredecessor > 63)
+            {
+                manager.GameOver();
+            }
+
             temporaryPredecessor = predecessors[temporaryPredecessor];
             temporaryRoute.Add(temporaryPredecessor);
             temporaryRouteSize++;
