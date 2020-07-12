@@ -94,31 +94,26 @@ public class Cat : MonoBehaviour
 
     public void StartAction()
     {
-        Debug.Log("1");
         SetState();
 
-        Debug.Log("2");
         audios = audioObj.GetComponents<AudioSource>();
         int randomInt = Random.Range(0, audios.Length);
         audios[randomInt].Play();
 
-        Debug.Log("3");
         StartCoroutine(MoveCo());
     }
 
     IEnumerator MoveCo()
     {
-        Debug.Log("Sleep" + isAsleep);
         if(!isAsleep)
         {
-            Debug.Log("4");
             pathToMoveTo = getObjectivePath(GetObjective());
+
             for (int i = 0; i < pathToMoveTo.route.Length; i++)
             {
                 cellToMoveTo = pathToMoveTo.route[i];
                 move = true;
                 yield return new WaitUntil(() => !move);
-                Debug.Log("5");
                 if (pathToMoveTo.route[i] == GetNextCell(pathToMoveTo))
                 {
                     break;
@@ -126,7 +121,7 @@ public class Cat : MonoBehaviour
             }
         }
 
-        InteractWithObject();
+        //InteractWithObject();
     }
 
     void SetState()
@@ -370,7 +365,7 @@ public class Cat : MonoBehaviour
 
     Path getObjectivePath(int objective)
     {
-        CatObject toFind = new CatObject();
+        CatObject toFind;
 
         switch (objective)
         {
@@ -409,8 +404,12 @@ public class Cat : MonoBehaviour
             case Definitions.BAG_OF_TREATS_IDX:
                 toFind = manager.catObjects.Find(x => x.objName == "BAG OF TREATS");
                 break;
+
+            default:
+                toFind = manager.catObjects[0];
+                break;
         }
-        
+
         return GetOptimalPathToCell(toFind.cellPosition);
     }
 
@@ -540,7 +539,6 @@ public class Cat : MonoBehaviour
         List<int> temporaryRoute = new List<int>();
         int temporaryRouteSize;
         int temporaryPredecessor;
-        int timeout = 0;
 
         // Initialize arrays & lists
         for (int i = 0; i < Definitions.NO_OF_BOARD_CELLS; i++)
@@ -553,7 +551,7 @@ public class Cat : MonoBehaviour
         // Set tentative distance to current node to 0
         tentativeDistance[cellPosition] = 0;
 
-        while (!visitedNodes.Contains(cell) || timeout < Definitions.MAX_DIJKSTRA_ITERATIONS)
+        for (int l = 0; l < Definitions.MAX_DIJKSTRA_ITERATIONS; l++)
         {   
             // Select the next node
             currentNode = GetLowestArrayValueInsidePos(tentativeDistance, unvisitedNodes);
@@ -585,7 +583,8 @@ public class Cat : MonoBehaviour
             for (int i = 0; i < neighbors.Count; i++)
             {
                 // Calculate the tentative distance for this path
-                currentTentativeDistance = tentativeDistance[currentNode] + manager.cells[neighbors[i]].cost;
+                //currentTentativeDistance = tentativeDistance[currentNode] + manager.cells[neighbors[i]].cost;
+                currentTentativeDistance = tentativeDistance[currentNode] + 1.0f;
 
                 if (tentativeDistance[neighbors[i]] > currentTentativeDistance)
                 {
@@ -598,28 +597,36 @@ public class Cat : MonoBehaviour
             unvisitedNodes.Remove(currentNode);
             visitedNodes.Add(currentNode);
 
-            timeout++;
-        }
+            // Break the loop if the node is found
 
-        if (timeout >= Definitions.MAX_DIJKSTRA_ITERATIONS)
-        {
-            Debug.Log("Error: Reached max allowed number of Dijkstra iterations");
+            if (visitedNodes.Contains(cell))
+            {
+                break;
+            }
         }
 
         // Compile results
         optimalPath.cost = tentativeDistance[cell];
 
         temporaryRouteSize = 0;
-        do
+        temporaryPredecessor = predecessors[cell];
+        temporaryRoute.Add(temporaryPredecessor);
+        temporaryRouteSize++;
+        for (int i = 0; i < (Definitions.MAX_DIJKSTRA_ITERATIONS / 100); i++)
         {
-            temporaryPredecessor = predecessors[cell];
+            temporaryPredecessor = predecessors[temporaryPredecessor];
             temporaryRoute.Add(temporaryPredecessor);
             temporaryRouteSize++;
+
+            if (temporaryPredecessor == cellPosition)
+            {
+                break;
+            }
         }
-        while (temporaryPredecessor != cellPosition);
 
         // Reorder route array
         int j = 0;
+        optimalPath.route = new int[temporaryRouteSize];
         for (int i = temporaryRouteSize - 1; i >= 0; i--)
         {
             optimalPath.route[i] = temporaryRoute[j++];

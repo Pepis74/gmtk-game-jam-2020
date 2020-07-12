@@ -617,7 +617,6 @@ public class GameManager : MonoBehaviour
         turns += 1;
         turnsText.text = Definitions.TURNS_TXT + (Definitions.MAX_TURNS - turns);
         selectText.text = Definitions.CAT_TXT;
-        Debug.Log("Cat about to begin");
         cat.StartAction();
     }
 
