@@ -40,13 +40,25 @@ public class Cat : MonoBehaviour
     public int memory;
 
     // Other internal components
+    [SerializeField]
+    GameObject audioObj;
+    AudioSource[] audios = new AudioSource[4];
+    [SerializeField]
+    float xOffset;
+    [SerializeField]
+    float yOffset;
+    float speed;
     private GameManager manager;
     private int totd;
+    Path pathToMoveTo;
+    int cellToMoveTo;
+    bool move;
 
     void Start()
     {
         // Initialize internal components
         manager = FindObjectOfType<GameManager>();
+        speed = Definitions.CATWALK_SPD;
 
         // Create the personality for the cat
         GeneratePersonality();
@@ -64,14 +76,53 @@ public class Cat : MonoBehaviour
 
     void Update()
     {
-        
+        if (move)
+        {
+            transform.localPosition = Vector3.MoveTowards(new Vector3(transform.localPosition.x, transform.localPosition.y, manager.cells[cellPosition].zOffset), new Vector3(manager.cells[cellToMoveTo].transform.localPosition.x + xOffset, manager.cells[cellToMoveTo].transform.localPosition.y + yOffset, manager.cells[cellToMoveTo].zOffset), speed * Time.deltaTime);
+            transform.localPosition = new Vector3(Mathf.Round(transform.localPosition.x * 1000) / 1000, Mathf.Round(transform.localPosition.y * 1000) / 1000, transform.localPosition.z);
+
+            if (transform.localPosition == new Vector3(manager.cells[cellToMoveTo].transform.localPosition.x + xOffset, manager.cells[cellToMoveTo].transform.localPosition.y + yOffset, transform.localPosition.z))
+            {   
+                manager.cells[cellPosition].occupied = false;
+                cellPosition = cellToMoveTo;
+                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, manager.cells[cellPosition].zOffset);
+                manager.cells[cellPosition].occupied = true;
+                move = false;
+            }
+        }
     }
 
     public void StartAction()
     {
         SetState();
 
-        GetNextCell(getObjectivePath(GetObjective()));
+        audios = audioObj.GetComponents<AudioSource>();
+        int randomInt = Random.Range(0, audios.Length);
+        audios[randomInt].Play();
+
+        StartCoroutine(MoveCo());
+    }
+
+    IEnumerator MoveCo()
+    {
+        if(!isAsleep)
+        {
+            pathToMoveTo = getObjectivePath(GetObjective());
+
+            for (int i = 0; i < pathToMoveTo.route.Length; i++)
+            {
+                cellToMoveTo = pathToMoveTo.route[i];
+                move = true;
+                yield return new WaitUntil(() => !move);
+
+                if (pathToMoveTo.route[i] == GetNextCell(getObjectivePath(GetObjective())))
+                {
+                    break;
+                }
+            }
+        }
+        
+
     }
 
     void SetState()
@@ -101,6 +152,7 @@ public class Cat : MonoBehaviour
             else
             {
                 isLoker = false;
+                speed = Definitions.CATWALK_SPD;
                 turnsLoker = 0;
             }
         }
@@ -112,6 +164,7 @@ public class Cat : MonoBehaviour
                 if (Random.Range(0.0f, 1.0f) < personality.lokerChances[totd])
                 {
                     isLoker = true;
+                    speed = Definitions.CATRUN_SPD;
                     turnsLoker = 1;
                 }
             }
