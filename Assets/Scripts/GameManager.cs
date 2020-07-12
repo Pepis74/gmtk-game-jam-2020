@@ -653,7 +653,10 @@ public class GameManager : MonoBehaviour
 
             // Update computers movement
             ToFind = catObjects.Find(x => x.internalMovementType == 5);
-            ToFind.CloneMovementType();
+            if (ToFind != null)
+            {
+                ToFind.CloneMovementType();
+            }
         }
     }
 

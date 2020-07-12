@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     {
         manager = FindObjectOfType<GameManager>();
 
+        inventoryAvailable = new bool[4];
+
         for (int i = 0; i < inventoryAvailable.Length; i++)
         {
             inventoryAvailable[i] = true;
