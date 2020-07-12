@@ -11,7 +11,10 @@ public class UIManager : MonoBehaviour
     public GameObject description;
     [SerializeField]
     GameObject phone;
+    [SerializeField]
+    GameObject endScreen;
     public GameObject[] toActivate;
+    public Text stars;
     GameManager manager;
     bool[] inventoryAvailable;
 
@@ -50,8 +53,15 @@ public class UIManager : MonoBehaviour
         description.SetActive(false);
     }
 
-    public void InstantiateObject(string objectName)
+    public void EndGame(int valuablesLeft)
     {
+        for (int i = 0; i < toActivate.Length; i++)
+        {
+            toActivate[i].SetActive(false);
+        }
 
+        stars.text = "POINTS: " + valuablesLeft + "/5";
+
+        endScreen.SetActive(true);
     }
 }

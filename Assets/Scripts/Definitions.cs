@@ -72,7 +72,7 @@ public class Definitions
     public const int INV_BAG_OF_TREATS = 3;
 
     // Texts
-    public const string SELECT_TXT = "SELECT AN OBJECT TO MOVE OR PLACE A NEW ONE FROM YOUR INVENTORY";
+    public const string SELECT_TXT = "LEFT CLICK AN OBJECT TO MOVE OR RIGHT CLICK TO GET INFO";
     public const string CHOOSE_TXT = "CHOOSE A LOCATION, PRESS AGAIN ON THE OBJECT TO CANCEL";
     public const string PLACE_TXT = "PLACE THE OBJECT YOU'VE CHOSEN";
     public const string CAT_TXT = "IT'S THE CAT'S TURN";

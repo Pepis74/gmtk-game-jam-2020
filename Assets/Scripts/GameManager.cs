@@ -639,12 +639,7 @@ public class GameManager : MonoBehaviour
                 catObjects[i].GetComponent<Collider2D>().enabled = false;
             }
 
-            for (int i = 0; i < uI.toActivate.Length; i++)
-            {
-                uI.toActivate[i].SetActive(false);
-            }
-
-            gameOverScreen.SetActive(true);
+            uI.EndGame(valuablesLeft);
         }
 
         else
