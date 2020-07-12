@@ -28,11 +28,11 @@ public class Definitions
     public const float LOKER_INCREASE_FACTOR = 1.5f;
     public const float REMAIN_LOKER_BASE = 0.6f;
     public const float REMAIN_ASLEEP_BASE = 0.5f;
-    public const int CAT_MOVT_DIR_UP = 1;
-    public const int CAT_MOVT_DIR_DOWN = 2;
-    public const int CAT_MOVT_DIR_LEFT = 3;
-    public const int CAT_MOVT_DIR_RIGHT = 4;
-    public const int CAT_MOVT_DIR_UNKNOWN = 5;
+    public const int CAT_MOVT_DIR_UP = 0;
+    public const int CAT_MOVT_DIR_DOWN = 1;
+    public const int CAT_MOVT_DIR_LEFT = 2;
+    public const int CAT_MOVT_DIR_RIGHT = 3;
+    public const int CAT_MOVT_DIR_UNKNOWN = 4;
 
     // Cat personality constants
     public const int NO_OF_FUR_COLORS = 1;

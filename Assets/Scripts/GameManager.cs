@@ -617,10 +617,16 @@ public class GameManager : MonoBehaviour
 
     public void EndTurn()
     {
+        CatObject ToFind;
+
         turns += 1;
         turnsText.text = Definitions.TURNS_TXT + (Definitions.MAX_TURNS - turns);
         selectText.text = Definitions.CAT_TXT;
         cat.StartAction();
+
+        // Update computers movement
+        ToFind = catObjects.Find(x => x.internalMovementType == 5);
+        ToFind.CloneMovementType();
     }
 
     public void NewTurn()
