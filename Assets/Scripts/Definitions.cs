@@ -65,6 +65,12 @@ public class Definitions
     public const int VACUUM_CLEANER_IDX = 7;
     public const int BAG_OF_TREATS_IDX = 8;
 
+    // Inventory order
+    public const int INV_AIR_FRESHENER = 0;
+    public const int INV_CATNIP = 1;
+    public const int INV_VACUUM_CLEANER = 2;
+    public const int INV_BAG_OF_TREATS = 3;
+
     // Texts
     public const string SELECT_TXT = "SELECT AN OBJECT TO MOVE OR PLACE A NEW ONE FROM YOUR INVENTORY";
     public const string CHOOSE_TXT = "CHOOSE A LOCATION, PRESS AGAIN ON THE OBJECT TO CANCEL";

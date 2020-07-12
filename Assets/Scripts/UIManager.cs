@@ -13,10 +13,16 @@ public class UIManager : MonoBehaviour
     GameObject phone;
     public GameObject[] toActivate;
     GameManager manager;
+    bool[] inventoryAvailable;
 
     void Start()
     {
         manager = FindObjectOfType<GameManager>();
+
+        for (int i = 0; i < inventoryAvailable.Length; i++)
+        {
+            inventoryAvailable[i] = true;
+        }
     }
 
     public void StartGame()
@@ -42,5 +48,10 @@ public class UIManager : MonoBehaviour
         }
 
         description.SetActive(false);
+    }
+
+    public void InstantiateObject(string objectName)
+    {
+
     }
 }
