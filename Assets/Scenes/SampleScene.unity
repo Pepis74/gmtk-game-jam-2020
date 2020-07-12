@@ -272,7 +272,7 @@ MonoBehaviour:
   descGameplay: LOOKS DURABLE. CAN MOVE IN ANY DIRECTION 3 SPACES AT A TIME AND JUMP
     OVER OBJECTS.
   descFlavor: JUST A PLAIN OLD CHAIR. SEEMS LIKE IT'S A BIT UNCOMFORTABLE TO BE HONEST.
-  movementType: 3
+  movementType: 4
   cellPosition: 26
   cellToMoveTo: 0
   attractiveness: 0
@@ -359,9 +359,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objName: LAMP
-  descGameplay: LOOKS DURABLE.
-  descFlavor: 
-  movementType: 3
+  descGameplay: LOOKS DURABLE. CAN MOVE IN ANY DIRECTION 3 SPACES AT A TIME AND JUMP
+    OVER OBJECTS.
+  descFlavor: YOU LIKE THIS LAMP FOR SOME REASON, EVEN THOUGH IT'S NOTHING SPECIAL.
+    MAYBE YOU DON'T NEED TO BE SPECIAL TO BE LIKEABLE.
+  movementType: 4
   cellPosition: 7
   cellToMoveTo: 0
   attractiveness: 0
@@ -1854,9 +1856,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objName: NIGHTSTAND
-  descGameplay: LOOKS DURABLE.
-  descFlavor: 
-  movementType: 3
+  descGameplay: LOOKS DURABLE. CAN MOVE IN ANY DIRECTION 3 SPACES AT A TIME AND JUMP
+    OVER OBJECTS.
+  descFlavor: THIS LOOKS REALLY OLD, JUST LIKE THE REST OF THE APARTMENT. NO WONDER
+    PAUL BOUGHT THIS HOUSE FOR SUCH A SMALL PRICE, IT'S PROBABLY OLDER THAN HIS GRANDPA!
+  movementType: 4
   cellPosition: 0
   cellToMoveTo: 0
   attractiveness: 0
@@ -2075,7 +2079,7 @@ MonoBehaviour:
   descGameplay: LOOKS DURABLE. CAN MOVE IN ANY DIRECTION 3 SPACES AT A TIME AND JUMP
     OVER OBJECTS.
   descFlavor: JUST A PLAIN OLD CHAIR. SEEMS LIKE IT'S A BIT UNCOMFORTABLE TO BE HONEST.
-  movementType: 3
+  movementType: 4
   cellPosition: 20
   cellToMoveTo: 0
   attractiveness: 0
