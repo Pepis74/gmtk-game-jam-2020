@@ -23,11 +23,11 @@ public class Definitions
     public const int NODE_DIST_INFINITY = 30001;
     public const int OBJECTIVE_EMPTY = 30002;
     public const int NOT_SUITABLE_CELL = 30003;
-    public const int MAX_DIJKSTRA_ITERATIONS = 30000;
+    public const int MAX_DIJKSTRA_ITERATIONS = 3000;
     public const float COST_INFINITY = 30001.0f;
     public const float LOKER_INCREASE_FACTOR = 1.5f;
-    public const float REMAIN_LOKER_BASE = 0.6f;
-    public const float REMAIN_ASLEEP_BASE = 0.5f;
+    public const float REMAIN_LOKER_BASE = 0.8f;
+    public const float REMAIN_ASLEEP_BASE = 0.7f;
     public const int CAT_MOVT_DIR_UP = 0;
     public const int CAT_MOVT_DIR_DOWN = 1;
     public const int CAT_MOVT_DIR_LEFT = 2;
