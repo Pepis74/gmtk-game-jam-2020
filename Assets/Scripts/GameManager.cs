@@ -71,12 +71,13 @@ public class GameManager : MonoBehaviour
             crescendoA += 1;
         }
 
+        #endregion
+
         cells[0].occupied = true;
+        cells[4].occupied = true;
         cells[7].occupied = true;
         cells[20].occupied = true;
         cells[26].occupied = true;
-
-        #endregion
 
         #region Instantiate Valuables
 

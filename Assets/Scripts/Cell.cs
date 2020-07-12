@@ -11,11 +11,13 @@ public class Cell : MonoBehaviour
     GameManager manager;
     CatObject toFind;
     Animator anim;
+    Cat cat;
     bool move;
 
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        cat = FindObjectOfType<Cat>();
         manager = FindObjectOfType<GameManager>();
     }
 
@@ -28,6 +30,11 @@ public class Cell : MonoBehaviour
         {
             toFind.GetComponentInChildren<Animator>().SetBool("start", true);
         }
+
+        else if(cat.cellPosition == posValue)
+        {
+            cat.transform.GetChild(0).GetComponent<Animator>().SetBool("start", true);
+        }
     }
 
     void OnMouseExit()
@@ -39,6 +46,11 @@ public class Cell : MonoBehaviour
         if (toFind != null)
         {
             toFind.GetComponentInChildren<Animator>().SetBool("start", false);
+        }
+
+        else if (cat.cellPosition == posValue)
+        {
+            cat.transform.GetChild(0).GetComponent<Animator>().SetBool("start", false);
         }
     }
 

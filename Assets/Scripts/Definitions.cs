@@ -75,6 +75,6 @@ public class Definitions
 
     // Speeds
     public const float CATOBJ_SPD = 0.75f;
-    public const float CATWALK_SPD = 0.75f;
-    public const float CATRUN_SPD = 0.75f;
+    public const float CATWALK_SPD = 0.3f;
+    public const float CATRUN_SPD = 0.3f;
 }
