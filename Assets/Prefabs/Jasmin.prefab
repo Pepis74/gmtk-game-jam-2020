@@ -254,9 +254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c8af507aecab94481b6a882e8c186e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objName: 
-  descGameplay: 
-  descFlavor: 
+  objName: JASMINE
+  descGameplay: ONE OF THE FIVE VALUABLES YOU MUST PROTECT. CAN MOVE ONLY IN STRAIGHT
+    LINES 4 SPACES AT A TIME.
+  descFlavor: ITS AROMA FILLS THE ROOM AND REMINDS YOU OF THOSE SUMMERS YOU SPENT
+    AT THE COUNTRYHOUSE WHEN YOU WERE A KID. SWIMMING IN THE LAKE WITH MOM. PLAYING
+    CHESS WITH DAD. STAYING UP LATE TO WATCH THE STARRY SKY. GOOD TIMES.
   movementType: 0
   cellPosition: 0
   cellToMoveTo: 0

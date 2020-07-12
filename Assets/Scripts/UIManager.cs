@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < manager.catObjects.Count; i++)
         {
-            manager.catObjects[i].GetComponent<Collider2D>().enabled = false;
+            manager.catObjects[i].GetComponent<Collider2D>().enabled = true;
         }
 
         description.SetActive(false);

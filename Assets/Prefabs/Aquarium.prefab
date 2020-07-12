@@ -78,9 +78,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c8af507aecab94481b6a882e8c186e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objName: 
-  descGameplay: 
-  descFlavor: 
+  objName: AQUARIUM
+  descGameplay: ONE OF THE FIVE VALUABLES YOU MUST PROTECT. ITS RANGE IS UNLIMITED,
+    BUT IT CAN ONLY MOVE IN DIAGONAL LINES.
+  descFlavor: WATCHING THE FISH SWIM AND GO ABOUT THEIR LIVES MAKES YOU FEEL COZY
+    AND RELAXED. SOMETIMES, YOU WISH YOU WERE ONE OF THEM, LIVING A SIMPLE LIFE,
+    WITHOUT THE STRESS AND COMPLEXITY OF BEING AN ADULT.
   movementType: 1
   cellPosition: 0
   cellToMoveTo: 0
