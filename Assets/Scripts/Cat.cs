@@ -423,6 +423,18 @@ public class Cat : MonoBehaviour
                 }
             }
 
+            // Eliminate occupied cells which are not the current cell and the destination cell
+            for (int i = 0; i < manager.cells.Length; i++)
+            {
+                if (manager.cells[i].occupied && !(i == cell) && !(i == cellPosition))
+                {
+                    if (neighbors.Contains(i))
+                    {
+                        neighbors.Remove(i);
+                    }
+                }
+            }
+
             for (int i = 0; i < neighbors.Count; i++)
             {
                 // Calculate the tentative distance for this path
