@@ -22,10 +22,12 @@ public class UIManager : MonoBehaviour
     {
         manager = FindObjectOfType<GameManager>();
 
-        /*for (int i = 0; i < inventoryAvailable.Length; i++)
+        inventoryAvailable = new bool[4];
+
+        for (int i = 0; i < inventoryAvailable.Length; i++)
         {
             inventoryAvailable[i] = true;
-        }*/
+        }
     }
 
     public void StartGame()

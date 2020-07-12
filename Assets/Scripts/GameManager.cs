@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     Vector2 oGCellPos;
     UIManager uI;
     public Cell[] cells = new Cell[Definitions.BOARD_SIZE * Definitions.BOARD_SIZE];
-    public int valuablesLeft = 5;
+    public int valuablesLeft;
     int crescendoA;
     int randomInt;
     int posValue;
@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
         cells[26].occupied = true;
 
         #region Instantiate Valuables
+
+        valuablesLeft = 5;
 
         for (int i = 0; i < objectPrefabs.Length; i++)
         {
@@ -648,7 +650,10 @@ public class GameManager : MonoBehaviour
 
             // Update computers movement
             ToFind = catObjects.Find(x => x.internalMovementType == 5);
-            ToFind.CloneMovementType();
+            if (ToFind != null)
+            {
+                ToFind.CloneMovementType();
+            }
         }
     }
 
