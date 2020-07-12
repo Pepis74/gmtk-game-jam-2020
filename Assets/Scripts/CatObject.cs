@@ -11,6 +11,7 @@ public class CatObject : MonoBehaviour
     public string descFlavor;
     [SerializeField]
     int movementType;
+    int internalMovementType;
     public int cellPosition;
     public int cellToMoveTo;
     public int attractiveness;
@@ -29,6 +30,8 @@ public class CatObject : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
         uI = FindObjectOfType<UIManager>();
         rig = GetComponent<Rigidbody2D>();
+        internalMovementType = movementType;
+        CloneMovementType();
     }
 
     void Update()
@@ -67,6 +70,8 @@ public class CatObject : MonoBehaviour
                 manager.cells[cellPosition].occupied = true;
                 manager.EndTurn();
             }
+
+            CloneMovementType();
         }
 
         #endregion
@@ -95,5 +100,10 @@ public class CatObject : MonoBehaviour
     void OnMouseDown()
     {
         manager.EnableCells(this, movementType);
+    }
+
+    void CloneMovementType()
+    {
+
     }
 }
