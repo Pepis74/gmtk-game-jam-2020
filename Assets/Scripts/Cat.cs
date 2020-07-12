@@ -47,6 +47,8 @@ public class Cat : MonoBehaviour
     float xOffset;
     [SerializeField]
     float yOffset;
+    [SerializeField]
+    Animator anim;
     float speed;
     private GameManager manager;
     private int totd;
@@ -108,12 +110,21 @@ public class Cat : MonoBehaviour
         if(!isAsleep)
         {
             pathToMoveTo = getObjectivePath(GetObjective());
+            int[] routeDirections = GetRouteDirections(pathToMoveTo.route);
 
             for (int i = 0; i < pathToMoveTo.route.Length; i++)
             {
                 cellToMoveTo = pathToMoveTo.route[i];
+
+                if((i - 1) < pathToMoveTo.route.Length)
+                {
+                    anim.SetInteger("direction", routeDirections[i]);
+                }
+                
                 move = true;
+                anim.SetBool("walk", true);
                 yield return new WaitUntil(() => !move);
+
                 if (pathToMoveTo.route[i] == GetNextCell(pathToMoveTo))
                 {
                     break;
@@ -121,6 +132,7 @@ public class Cat : MonoBehaviour
             }
         }
 
+        anim.SetBool("walk", false);
         InteractWithObject();
         manager.NewTurn();
     }
@@ -152,6 +164,7 @@ public class Cat : MonoBehaviour
             else
             {
                 isLoker = false;
+                anim.SetBool("angry", false);
                 speed = Definitions.CATWALK_SPD;
                 turnsLoker = 0;
             }
@@ -164,6 +177,7 @@ public class Cat : MonoBehaviour
                 if (Random.Range(0.0f, 1.0f) < personality.lokerChances[totd])
                 {
                     isLoker = true;
+                    anim.SetBool("angry", true);
                     speed = Definitions.CATRUN_SPD;
                     turnsLoker = 1;
                 }
@@ -183,6 +197,7 @@ public class Cat : MonoBehaviour
             else
             {
                 isAsleep = false;
+                anim.SetBool("asleep", false);
                 turnsAsleep = 0;
             }
         }
@@ -194,6 +209,7 @@ public class Cat : MonoBehaviour
                 if (Random.Range(0.0f, 1.0f) < personality.sleepChances[totd])
                 {
                     isAsleep = true;
+                    anim.SetBool("asleep", true);
                     turnsAsleep = 1;
                 }
             }
@@ -523,7 +539,15 @@ public class Cat : MonoBehaviour
             {
                 ToFind.GetComponent<Valuable>().CatInteraction();
             }
+
+            anim.SetBool("interact", true);
         }
+    }
+
+    IEnumerator InteractFalseCo()
+    {
+        yield return new WaitForEndOfFrame();
+        anim.SetBool("interact", false);
     }
 
     Path GetOptimalPathToCell(int cell)

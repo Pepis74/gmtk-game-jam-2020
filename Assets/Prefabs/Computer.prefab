@@ -187,6 +187,7 @@ MonoBehaviour:
     IT'S A CONSEQUENCE OF GROWING UP? WHO KNOWS, BUT YOU WISH YOU WOULD GAME MORE
     OFTEN.
   movementType: 5
+  internalMovementType: 0
   cellPosition: 0
   cellToMoveTo: 0
   attractiveness: 5
@@ -194,7 +195,8 @@ MonoBehaviour:
   xOffset: -0.035
   manager: {fileID: 0}
   move: 0
-  destructionPar: {fileID: 0}
+  destructionPar: {fileID: 2663830096348301116, guid: 36ad2bf6bba5e354faec4749e083119f,
+    type: 3}
 --- !u!1 &3979435259264117354
 GameObject:
   m_ObjectHideFlags: 0

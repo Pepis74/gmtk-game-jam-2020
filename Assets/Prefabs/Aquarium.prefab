@@ -85,6 +85,7 @@ MonoBehaviour:
     AND RELAXED. SOMETIMES, YOU WISH YOU WERE ONE OF THEM, LIVING A SIMPLE LIFE,
     WITHOUT THE STRESS AND COMPLEXITY OF BEING AN ADULT.
   movementType: 3
+  internalMovementType: 0
   cellPosition: 0
   cellToMoveTo: 0
   attractiveness: 6
@@ -92,7 +93,8 @@ MonoBehaviour:
   xOffset: 0
   manager: {fileID: 0}
   move: 0
-  destructionPar: {fileID: 0}
+  destructionPar: {fileID: 2663830096348301116, guid: 36ad2bf6bba5e354faec4749e083119f,
+    type: 3}
 --- !u!1 &7315780961184451854
 GameObject:
   m_ObjectHideFlags: 0

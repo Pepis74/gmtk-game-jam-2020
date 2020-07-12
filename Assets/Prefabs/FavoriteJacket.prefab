@@ -190,6 +190,7 @@ MonoBehaviour:
     ALMOSY EVERYDAY! IT ALSO MAKES YOU FEEL LIKE YOU'RE THE BEST AT CHOOSING GIFTS
     FOR YOUR FRIENDS, WHICH IS A NICE BOOST TO YOUR SELF-ESTEEM.
   movementType: 1
+  internalMovementType: 0
   cellPosition: 0
   cellToMoveTo: 0
   attractiveness: 4
@@ -197,7 +198,8 @@ MonoBehaviour:
   xOffset: 0
   manager: {fileID: 0}
   move: 0
-  destructionPar: {fileID: 0}
+  destructionPar: {fileID: 2663830096348301116, guid: 36ad2bf6bba5e354faec4749e083119f,
+    type: 3}
 --- !u!1 &6404704752293323477
 GameObject:
   m_ObjectHideFlags: 0

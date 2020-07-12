@@ -81,6 +81,7 @@ MonoBehaviour:
     WERE THERE FOR HIM AND, EVEN THOUGH HE DOESN'T TELL YOU, YOU KNOW HE'S VERY GRATEFUL
     FOR IT.
   movementType: 0
+  internalMovementType: 0
   cellPosition: 0
   cellToMoveTo: 0
   attractiveness: 1
@@ -88,7 +89,8 @@ MonoBehaviour:
   xOffset: 0
   manager: {fileID: 0}
   move: 0
-  destructionPar: {fileID: 0}
+  destructionPar: {fileID: 2663830096348301116, guid: 36ad2bf6bba5e354faec4749e083119f,
+    type: 3}
 --- !u!1 &4099816412270809970
 GameObject:
   m_ObjectHideFlags: 0

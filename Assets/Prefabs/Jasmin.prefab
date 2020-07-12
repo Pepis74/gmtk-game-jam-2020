@@ -261,6 +261,7 @@ MonoBehaviour:
     AT THE COUNTRYHOUSE WHEN YOU WERE A KID. SWIMMING IN THE LAKE WITH MOM. PLAYING
     CHESS WITH DAD. STAYING UP LATE TO WATCH THE STARRY SKY. GOOD TIMES.
   movementType: 2
+  internalMovementType: 0
   cellPosition: 0
   cellToMoveTo: 0
   attractiveness: 4
@@ -268,4 +269,5 @@ MonoBehaviour:
   xOffset: -0.01
   manager: {fileID: 0}
   move: 0
-  destructionPar: {fileID: 0}
+  destructionPar: {fileID: 2663830096348301116, guid: 36ad2bf6bba5e354faec4749e083119f,
+    type: 3}
