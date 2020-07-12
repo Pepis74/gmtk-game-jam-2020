@@ -103,9 +103,33 @@ public class CatObject : MonoBehaviour
 
     void CloneMovementType()
     {
+        int tempDistance;
+        int lowestDistance = Definitions.NODE_DIST_INFINITY;
+        int closestValuable = Definitions.OBJECTIVE_EMPTY;
+        Valuable[] valuables;
+
         if (internalMovementType == 5)
         {
+            valuables = FindObjectsOfType<Valuable>();
 
+            for (int i = 0; i < valuables.Length; i++)
+            {
+                tempDistance = manager.GetDistanceBetweenCells(this.cellPosition, valuables[i].cellPosition);
+                if (tempDistance < lowestDistance)
+                {
+                    lowestDistance = tempDistance;
+                    closestValuable = i;
+                }
+            }
+
+            if (closestValuable == Definitions.OBJECTIVE_EMPTY)
+            {
+                this.movementType = 4;
+            }
+            else
+            {
+                this.movementType = valuables[closestValuable].movementType;
+            }
         }
     }
 }

@@ -788,7 +788,7 @@ public class GameManager : MonoBehaviour
         return adjacentCells;
     }
 
-    int GetDistanceBetweenCells(int cell1, int cell2)
+    public int GetDistanceBetweenCells(int cell1, int cell2)
     {
         // Implements the Dijkstra algorithm 
         List<int> unvisitedNodes = new List<int>();
