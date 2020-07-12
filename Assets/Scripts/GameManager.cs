@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
     public CatObject objectToMove;
     public List<CatObject> catObjects = new List<CatObject>();
     [SerializeField]
+    GameObject gameOverScreen;
+    [SerializeField]
     GameObject cell;
     GameObject ins;
     [SerializeField]
@@ -23,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Vector2 oGCellPos;
     public Cell[] cells = new Cell[Definitions.BOARD_SIZE * Definitions.BOARD_SIZE];
+    public int valuablesLeft;
     int crescendoA;
     int randomInt;
     int posValue;
@@ -78,7 +82,7 @@ public class GameManager : MonoBehaviour
             ins.transform.parent = objectParent;
             ins.transform.localPosition = new Vector3(Mathf.Round(cells[randomInt].transform.localPosition.x * 1000) / 1000 + objectPrefabs[i].GetComponent<CatObject>().xOffset, (Mathf.Round(cells[randomInt].transform.localPosition.y * 1000) / 1000) + objectPrefabs[i].GetComponent<CatObject>().yOffset, -0.001f * randomInt);
             ins.transform.localScale = Vector3.one;
-            ins.GetComponent<CatObject>().cellPosition = randomInt;
+            ins.GetComponent<CatObject>().cellPosition = randomInt;       
             cells[randomInt].occupied = true;
             catObjects.Add(ins.GetComponent<CatObject>());
         }
@@ -221,6 +225,29 @@ public class GameManager : MonoBehaviour
         }
 
         selectText.text = Definitions.SELECT_TXT;
+    }
+
+    public void GameOver()
+    {
+        cellParent.gameObject.SetActive(false);
+
+        for (int i = 0; i < catObjects.Count; i++)
+        {
+            catObjects[i].GetComponent<Collider2D>().enabled = false;
+        }
+
+        selectText.gameObject.SetActive(false);
+        gameOverScreen.SetActive(true);
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 
     public List<int> GetAdjacentCells(int cell, int radius=1)
