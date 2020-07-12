@@ -68,10 +68,9 @@ public class CatObject : MonoBehaviour
                 cellPosition = cellToMoveTo;
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, manager.cells[cellPosition].zOffset);
                 manager.cells[cellPosition].occupied = true;
+                CloneMovementType();
                 manager.EndTurn();
             }
-
-            CloneMovementType();
         }
 
         #endregion
@@ -104,6 +103,9 @@ public class CatObject : MonoBehaviour
 
     void CloneMovementType()
     {
+        if (internalMovementType == 5)
+        {
 
+        }
     }
 }

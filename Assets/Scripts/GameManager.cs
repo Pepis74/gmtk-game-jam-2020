@@ -787,6 +787,111 @@ public class GameManager : MonoBehaviour
         return adjacentCells;
     }
 
+    int GetDistanceBetweenCells(int cell1, int cell2)
+    {
+        // Implements the Dijkstra algorithm 
+        List<int> unvisitedNodes = new List<int>();
+        List<int> visitedNodes = new List<int>();
+        int[] tentativeDistance = new int[Definitions.NO_OF_BOARD_CELLS];
+        int[] predecessors = new int[Definitions.NO_OF_BOARD_CELLS];
+        List<int> neighbors = new List<int>();
+        int currentTentativeDistance;
+        int currentNode;
+        List<int> temporaryRoute = new List<int>();
+        int temporaryRouteSize;
+        int temporaryPredecessor;
+        int timeout = 0;
+
+        // Initialize arrays & lists
+        for (int i = 0; i < Definitions.NO_OF_BOARD_CELLS; i++)
+        {
+            unvisitedNodes[i] = i;
+            tentativeDistance[i] = Definitions.NODE_DIST_INFINITY;
+            predecessors[i] = Definitions.NODE_NOT_IN_LIST;
+        }
+
+        // Set tentative distance to current node to 0
+        tentativeDistance[cell1] = 0;
+
+        while (!visitedNodes.Contains(cell2) || timeout < Definitions.MAX_DIJKSTRA_ITERATIONS)
+        {
+            // Select the next node
+            currentNode = GetLowestIntArrayValueInsidePos(tentativeDistance, unvisitedNodes);
+
+            // Get its neighbors
+            neighbors = GetAdjacentCellsCapped(currentNode);
+
+            // Eliminate visited neighbors
+            for (int i = 0; i < visitedNodes.Count; i++)
+            {
+                if (neighbors.Contains(visitedNodes[i]))
+                {
+                    neighbors.Remove(visitedNodes[i]);
+                }
+            }
+
+            for (int i = 0; i < neighbors.Count; i++)
+            {
+                // Calculate the tentative distance for this path
+                currentTentativeDistance = tentativeDistance[currentNode] + 1;
+
+                if (tentativeDistance[neighbors[i]] > currentTentativeDistance)
+                {
+                    tentativeDistance[neighbors[i]] = currentTentativeDistance;
+                }
+            }
+
+            // Once all is updated move the node from the unvisited list to the visited list
+            unvisitedNodes.Remove(currentNode);
+            visitedNodes.Add(currentNode);
+
+            timeout++;
+        }
+
+        if (timeout >= Definitions.MAX_DIJKSTRA_ITERATIONS)
+        {
+            Debug.Log("Error: Reached max allowed number of Dijkstra iterations");
+        }
+
+        // Compile results
+        return tentativeDistance[cell2];
+    }
+
+    int GetLowestIntArrayValueInsidePos(int[] mainArray, List<int> containingList)
+    {
+        int lowestValuePos;
+        bool isValueInArray;
+        do
+        {
+            lowestValuePos = GetLowestIntArrayValuePos(mainArray);
+            isValueInArray = containingList.Contains(lowestValuePos);
+
+            if (!isValueInArray)
+            {
+                mainArray[lowestValuePos] = Definitions.NODE_DIST_INFINITY;
+            }
+        }
+        while (!isValueInArray);
+
+        return lowestValuePos;
+    }
+
+    public int GetLowestIntArrayValuePos(int[] array)
+    {
+        int lowestValue = array[0];
+        int lowestValuePos = 0;
+
+        for (int i = 1; i < array.Length; i++)
+        {
+            if (array[i] < lowestValue)
+            {
+                lowestValuePos = i;
+                lowestValue = array[i];
+            }
+        }
+
+        return lowestValuePos;
+    }
 
     public int GetLowestArrayValuePos(float[] array)
     {
