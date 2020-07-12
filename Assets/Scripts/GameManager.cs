@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
 
     public void EnableCells(CatObject toMove, int movementType)
     {
+        bool obstructed;
         objectToMove = toMove;
         viableCells.Clear();
 
@@ -128,56 +129,60 @@ public class GameManager : MonoBehaviour
                 break;
 
             case 1:
-
-                for(int i = toMove.cellPosition; i > 0; i -= Definitions.BOARD_SIZE + 1)
+                obstructed = false;
+                for (int i = toMove.cellPosition; i >= 0; i -= Definitions.BOARD_SIZE + 1)
                 {
-                    if(!cells[i].occupied)
+                    
+                    if (!cells[i].occupied && !obstructed)
                     {
                         viableCells.Add(i);
                     }
 
-                    else
+                    else if (i != toMove.cellPosition)
                     {
-                        break;
+                        obstructed = true;
                     }
                 }
 
-                for (int i = toMove.cellPosition; i > 0; i -= Definitions.BOARD_SIZE - 1)
+                obstructed = false;
+                for (int i = toMove.cellPosition; i >= 0; i -= Definitions.BOARD_SIZE - 1)
                 {
-                    if (!cells[i].occupied)
+                    if (!cells[i].occupied && !obstructed)
                     {
                         viableCells.Add(i);
                     }
 
-                    else
+                    else if (i != toMove.cellPosition)
                     {
-                        break;
+                        obstructed = true;
                     }
                 }
 
+                obstructed = false;
                 for (int i = toMove.cellPosition; i < 64; i += Definitions.BOARD_SIZE + 1)
                 {
-                    if (!cells[i].occupied)
+                    if (!cells[i].occupied && !obstructed)
                     {
                         viableCells.Add(i);
                     }
 
-                    else
+                    else if (i != toMove.cellPosition)
                     {
-                        break;
+                        obstructed = true;
                     }
                 }
 
+                obstructed = false;
                 for (int i = toMove.cellPosition; i < 64; i += Definitions.BOARD_SIZE - 1)
                 {
-                    if (!cells[i].occupied)
+                    if (!cells[i].occupied && !obstructed)
                     {
                         viableCells.Add(i);
                     }
 
-                    else
+                    else if (i != toMove.cellPosition)
                     {
-                        break;
+                        obstructed = true;
                     }
                 }
 
@@ -376,7 +381,7 @@ public class GameManager : MonoBehaviour
         bool is_lft;
         bool is_rgt;
 
-        List<int> adjacentCells = new List<int>;
+        List<int> adjacentCells = new List<int>();
 
         // Detect postion of the cell in the board
         is_top = (cell / Definitions.BOARD_SIZE == 0);
