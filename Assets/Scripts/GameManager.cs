@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public Transform cellParent;
     public Color blue;
+    public AudioSource buttonSound;
     [SerializeField]
     Color red;
     [SerializeField]
@@ -41,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        buttonSound = GetComponent<AudioSource>();
+
         #region Instantiate Cells
 
         oGCellPos = new Vector2(oGCellPos.x + 0.09f, oGCellPos.y + 0.06f);
@@ -618,6 +621,16 @@ public class GameManager : MonoBehaviour
         turnsText.text = Definitions.TURNS_TXT + (Definitions.MAX_TURNS - turns);
         selectText.text = Definitions.CAT_TXT;
         cat.StartAction();
+    }
+
+    public void NewTurn()
+    {
+        selectText.text = Definitions.SELECT_TXT;
+
+        for (int i = 0; i < catObjects.Count; i++)
+        {
+            catObjects[i].GetComponent<Collider2D>().enabled = true;
+        }
     }
 
     public void Retry()

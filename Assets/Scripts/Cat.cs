@@ -121,7 +121,8 @@ public class Cat : MonoBehaviour
             }
         }
 
-        //InteractWithObject();
+        InteractWithObject();
+        manager.NewTurn();
     }
 
     void SetState()
