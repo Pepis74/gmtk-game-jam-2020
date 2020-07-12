@@ -27,9 +27,11 @@ public class Cat : MonoBehaviour
 
     // Loker
     public bool isLoker;
+    public int turnsLoker;
 
     // Sleep
     public bool isAsleep;
+    public int turnsAsleep;
 
     // Cell where the cat is located
     public int cellPosition;
@@ -56,18 +58,89 @@ public class Cat : MonoBehaviour
         // Set objective to empty
         memory = Definitions.OBJECTIVE_EMPTY;
 
-        // Set fixed totd since it's end up as an unused feature
+        // Set fixed totd since it has ended up as an unused feature
         totd = 0;
     }
 
     void Update()
     {
+        //SetState();
 
+        // Where to move to (Returns a cell number):
+        //GetNextCell(getObjectivePath(GetObjective()));
     }
 
     void SetState()
     {
+        // Randomly select which goes first, sleep or loker
+        if (Random.Range(0.0f, 1.0f) < 0.5f)
+        {
+            SetLoker();
+            SetAsleep();
+        }
+        else
+        {
+            SetAsleep();
+            SetLoker();
+        }
+    }
 
+    void SetLoker()
+    {
+        // If already loker every time it's less probable that will continue
+        if (isLoker)
+        {
+            if (Random.Range(0.0f, 1.0f) < Definitions.REMAIN_LOKER_BASE / (float)turnsLoker)
+            {
+                turnsLoker++;
+            }
+            else
+            {
+                isLoker = false;
+                turnsLoker = 0;
+            }
+        }
+        else
+        {
+            if (!isAsleep)
+            {
+                // Set loker
+                if (Random.Range(0.0f, 1.0f) < personality.lokerChances[totd])
+                {
+                    isLoker = true;
+                    turnsLoker = 1;
+                }
+            }
+        }
+    }
+
+    void SetAsleep()
+    {
+        // If already asleep every time it's less probable that will continue
+        if (isAsleep)
+        {
+            if (Random.Range(0.0f, 1.0f) < Definitions.REMAIN_ASLEEP_BASE / (float)turnsAsleep)
+            {
+                turnsAsleep++;
+            }
+            else
+            {
+                isAsleep = false;
+                turnsAsleep = 0;
+            }
+        }
+        else
+        {
+            if (!isLoker)
+            {
+                // Set asleep
+                if (Random.Range(0.0f, 1.0f) < personality.sleepChances[totd])
+                {
+                    isAsleep = true;
+                    turnsAsleep = 1;
+                }
+            }
+        }
     }
 
     void GeneratePersonality()
@@ -119,7 +192,7 @@ public class Cat : MonoBehaviour
         // Preinitialize some required variables
         for (int i = 0; i < objectPath.Length; i++)
         {
-            objectPath.[i].cost = Definitions.COST_INFINITY;
+            objectPath[i].cost = Definitions.COST_INFINITY;
         }
 
         // Precalculate interest & routes
@@ -280,7 +353,7 @@ public class Cat : MonoBehaviour
         return GetOptimalPathToCell(toFind.cellPosition);
     }
 
-    int GetNextCell(Path objectivePath, float stamina)
+    int GetNextCell(Path objectivePath)
     {
         int nextCell;
         int roundedStamina;

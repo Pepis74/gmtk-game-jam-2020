@@ -24,6 +24,8 @@ public class Definitions
     public const int MAX_DIJKSTRA_ITERATIONS = 30000;
     public const float COST_INFINITY = 30001.0f;
     public const float LOKER_INCREASE_FACTOR = 1.5f;
+    public const float REMAIN_LOKER_BASE = 0.6f;
+    public const float REMAIN_ASLEEP_BASE = 0.5f;
 
     // Cat personality constants
     public const int NO_OF_FUR_COLORS = 1;
