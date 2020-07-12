@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     GameObject[] objectPrefabs;
     [SerializeField]
     Vector2 oGCellPos;
+    UIManager uI;
     public Cell[] cells = new Cell[Definitions.BOARD_SIZE * Definitions.BOARD_SIZE];
     public int valuablesLeft;
     int crescendoA;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         buttonSound = GetComponent<AudioSource>();
+        uI = FindObjectOfType<UIManager>();
 
         #region Instantiate Cells
 
@@ -612,7 +614,11 @@ public class GameManager : MonoBehaviour
             catObjects[i].GetComponent<Collider2D>().enabled = false;
         }
 
-        selectText.gameObject.SetActive(false);
+        for (int i = 0; i < uI.toActivate.Length; i++)
+        {
+            uI.toActivate[i].SetActive(false);
+        }
+
         gameOverScreen.SetActive(true);
     }
 
@@ -623,11 +629,32 @@ public class GameManager : MonoBehaviour
         turns += 1;
         turnsText.text = Definitions.TURNS_TXT + (Definitions.MAX_TURNS - turns);
         selectText.text = Definitions.CAT_TXT;
-        cat.StartAction();
 
-        // Update computers movement
-        ToFind = catObjects.Find(x => x.internalMovementType == 5);
-        ToFind.CloneMovementType();
+        if(Definitions.MAX_TURNS - turns == 0)
+        {
+            cellParent.gameObject.SetActive(false);
+
+            for (int i = 0; i < catObjects.Count; i++)
+            {
+                catObjects[i].GetComponent<Collider2D>().enabled = false;
+            }
+
+            for (int i = 0; i < uI.toActivate.Length; i++)
+            {
+                uI.toActivate[i].SetActive(false);
+            }
+
+            gameOverScreen.SetActive(true);
+        }
+
+        else
+        {
+            cat.StartAction();
+
+            // Update computers movement
+            ToFind = catObjects.Find(x => x.internalMovementType == 5);
+            ToFind.CloneMovementType();
+        }
     }
 
     public void NewTurn()

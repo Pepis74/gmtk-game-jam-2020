@@ -11,8 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject description;
     [SerializeField]
     GameObject phone;
-    [SerializeField]
-    GameObject[] toActivate;
+    public GameObject[] toActivate;
     GameManager manager;
 
     void Start()
