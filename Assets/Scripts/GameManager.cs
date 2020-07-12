@@ -93,6 +93,20 @@ public class GameManager : MonoBehaviour
     public void EnableCells(CatObject toMove, int movementType)
     {
         bool obstructed;
+        bool outOfBounds;
+
+        int dstToTop;
+        int dstToBot;
+        int dstToLft;
+        int dstToRgt;
+
+        int coordX;
+        int coordY;
+
+        int newCell;
+
+        int boardDiagonal = Mathf.CeilToInt(Mathf.Sqrt((Definitions.BOARD_SIZE ^ 2) + (Definitions.BOARD_SIZE ^ 2)));
+
         objectToMove = toMove;
         viableCells.Clear();
 
@@ -129,60 +143,193 @@ public class GameManager : MonoBehaviour
                 break;
 
             case 1:
+                // Detect distances from the cell to the edges of the board
+                dstToTop = toMove.cellPosition / Definitions.BOARD_SIZE;
+                dstToBot = (Definitions.BOARD_SIZE - 1) - (toMove.cellPosition / Definitions.BOARD_SIZE);
+                dstToRgt = toMove.cellPosition % Definitions.BOARD_SIZE;
+                dstToLft = (Definitions.BOARD_SIZE - 1) - (toMove.cellPosition % Definitions.BOARD_SIZE);
+
                 obstructed = false;
-                for (int i = toMove.cellPosition; i >= 0; i -= Definitions.BOARD_SIZE + 1)
+                coordX = 0;
+                coordY = 0;
+                for (int i = 0; i < boardDiagonal; i++)
                 {
-                    
-                    if (!cells[i].occupied && !obstructed)
+                    coordX = coordX + 1;
+                    coordY = coordY + 1;
+
+                    // Check boundaries
+                    outOfBounds = false;
+
+                    if (coordX > dstToRgt)
                     {
-                        viableCells.Add(i);
+                        outOfBounds = true;
                     }
 
-                    else if (i != toMove.cellPosition)
+                    if (coordX < -dstToLft)
                     {
-                        obstructed = true;
+                        outOfBounds = true;
+                    }
+
+                    if (coordY > dstToTop)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY < -dstToBot)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (!outOfBounds)
+                    {
+                        newCell = toMove.cellPosition - coordX - (coordY * Definitions.BOARD_SIZE);
+
+                        if (!cells[newCell].occupied && !obstructed)
+                        {
+                            viableCells.Add(newCell);
+                        }
+                        else if (i != toMove.cellPosition)
+                        {
+                            obstructed = true;
+                        }
                     }
                 }
 
                 obstructed = false;
-                for (int i = toMove.cellPosition; i >= 0; i -= Definitions.BOARD_SIZE - 1)
+                coordX = 0;
+                coordY = 0;
+                for (int i = 0; i < boardDiagonal; i++)
                 {
-                    if (!cells[i].occupied && !obstructed)
+                    coordX = coordX + 1;
+                    coordY = coordY - 1;
+
+                    // Check boundaries
+                    outOfBounds = false;
+
+                    if (coordX > dstToRgt)
                     {
-                        viableCells.Add(i);
+                        outOfBounds = true;
                     }
 
-                    else if (i != toMove.cellPosition)
+                    if (coordX < -dstToLft)
                     {
-                        obstructed = true;
+                        outOfBounds = true;
+                    }
+
+                    if (coordY > dstToTop)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY < -dstToBot)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (!outOfBounds)
+                    {
+                        newCell = toMove.cellPosition - coordX - (coordY * Definitions.BOARD_SIZE);
+
+                        if (!cells[newCell].occupied && !obstructed)
+                        {
+                            viableCells.Add(newCell);
+                        }
+                        else if (i != toMove.cellPosition)
+                        {
+                            obstructed = true;
+                        }
                     }
                 }
 
                 obstructed = false;
-                for (int i = toMove.cellPosition; i < 64; i += Definitions.BOARD_SIZE + 1)
+                coordX = 0;
+                coordY = 0;
+                for (int i = 0; i < boardDiagonal; i++)
                 {
-                    if (!cells[i].occupied && !obstructed)
+                    coordX = coordX - 1;
+                    coordY = coordY + 1;
+
+                    // Check boundaries
+                    outOfBounds = false;
+
+                    if (coordX > dstToRgt)
                     {
-                        viableCells.Add(i);
+                        outOfBounds = true;
                     }
 
-                    else if (i != toMove.cellPosition)
+                    if (coordX < -dstToLft)
                     {
-                        obstructed = true;
+                        outOfBounds = true;
+                    }
+
+                    if (coordY > dstToTop)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY < -dstToBot)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (!outOfBounds)
+                    {
+                        newCell = toMove.cellPosition - coordX - (coordY * Definitions.BOARD_SIZE);
+
+                        if (!cells[newCell].occupied && !obstructed)
+                        {
+                            viableCells.Add(newCell);
+                        }
+                        else if (i != toMove.cellPosition)
+                        {
+                            obstructed = true;
+                        }
                     }
                 }
 
                 obstructed = false;
-                for (int i = toMove.cellPosition; i < 64; i += Definitions.BOARD_SIZE - 1)
+                coordX = 0;
+                coordY = 0;
+                for (int i = 0; i < boardDiagonal; i++)
                 {
-                    if (!cells[i].occupied && !obstructed)
+                    coordX = coordX - 1;
+                    coordY = coordY - 1;
+
+                    // Check boundaries
+                    outOfBounds = false;
+
+                    if (coordX > dstToRgt)
                     {
-                        viableCells.Add(i);
+                        outOfBounds = true;
                     }
 
-                    else if (i != toMove.cellPosition)
+                    if (coordX < -dstToLft)
                     {
-                        obstructed = true;
+                        outOfBounds = true;
+                    }
+
+                    if (coordY > dstToTop)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY < -dstToBot)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (!outOfBounds)
+                    {
+                        newCell = toMove.cellPosition - coordX - (coordY * Definitions.BOARD_SIZE);
+
+                        if (!cells[newCell].occupied && !obstructed)
+                        {
+                            viableCells.Add(newCell);
+                        }
+                        else if (i != toMove.cellPosition)
+                        {
+                            obstructed = true;
+                        }
                     }
                 }
 
