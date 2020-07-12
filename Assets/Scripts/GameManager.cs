@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     Transform objectParent;
     public CatObject objectToMove;
     public List<CatObject> catObjects = new List<CatObject>();
+    [SerializeField]
+    GameObject gameOverScreen;
     [SerializeField]
     GameObject cell;
     GameObject ins;
@@ -226,7 +229,25 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        cellParent.gameObject.SetActive(false);
 
+        for (int i = 0; i < catObjects.Count; i++)
+        {
+            catObjects[i].GetComponent<Collider2D>().enabled = false;
+        }
+
+        selectText.gameObject.SetActive(false);
+        gameOverScreen.SetActive(true);
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 
     public List<int> GetAdjacentCells(int cell, int radius=1)
