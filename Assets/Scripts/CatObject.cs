@@ -40,6 +40,7 @@ public class CatObject : MonoBehaviour
 
         if(mouseOver && Input.GetKeyDown(KeyCode.Mouse1))
         {
+            manager.buttonSound.Play();
             uI.title.text = objName;
             uI.descGameplay.text = descGameplay;
             uI.descFlavor.text = descFlavor;
@@ -99,6 +100,7 @@ public class CatObject : MonoBehaviour
     void OnMouseDown()
     {
         manager.EnableCells(this, movementType);
+        manager.buttonSound.Play();
     }
 
     void CloneMovementType()

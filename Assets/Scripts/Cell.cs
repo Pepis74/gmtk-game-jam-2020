@@ -47,10 +47,12 @@ public class Cell : MonoBehaviour
         if(manager.objectToMove.cellPosition == posValue)
         {
             manager.DisableCells();
+            manager.buttonSound.Play();
         }
 
         else if(GetComponentInChildren<SpriteRenderer>().color == manager.blue)
         {
+            manager.buttonSound.Play();
             manager.cellParent.gameObject.SetActive(false);
 
             manager.objectToMove.cellToMoveTo = posValue;
