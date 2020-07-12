@@ -641,6 +641,7 @@ public class Cat : MonoBehaviour
             temporaryPredecessor = predecessors[temporaryPredecessor];
             temporaryRoute.Add(temporaryPredecessor);
             temporaryRouteSize++;
+            Debug.Log("Temporary Predecessor: " + temporaryPredecessor);
 
             if (temporaryPredecessor == cellPosition)
             {

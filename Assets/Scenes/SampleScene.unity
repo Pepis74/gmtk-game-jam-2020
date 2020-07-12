@@ -677,7 +677,7 @@ MonoBehaviour:
   memory: 0
   audioObj: {fileID: 1265090629}
   xOffset: 0
-  yOffset: 0
+  yOffset: 0.06
   anim: {fileID: 911692178}
 --- !u!1 &322708121
 GameObject:
