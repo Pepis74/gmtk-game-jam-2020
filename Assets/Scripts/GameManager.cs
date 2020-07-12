@@ -390,6 +390,7 @@ public class GameManager : MonoBehaviour
 
         cellParent.gameObject.SetActive(true);
         cells[toMove.cellPosition].GetComponentInChildren<Animator>().SetBool("jump", true);
+        StartCoroutine(JumpFalseCo());
     }
 
     public void DisableCells()
@@ -625,5 +626,12 @@ public class GameManager : MonoBehaviour
         }
 
         return valueFound;
+    }
+
+    IEnumerator JumpFalseCo()
+    {
+        yield return new WaitForEndOfFrame();
+        cells[objectToMove.cellPosition].GetComponentInChildren<Animator>().SetBool("start", true);
+        cells[objectToMove.cellPosition].GetComponentInChildren<Animator>().SetBool("jump", false);
     }
 }
