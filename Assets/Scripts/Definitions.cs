@@ -20,7 +20,10 @@ public class Definitions
     // Cat related constants
     public const int NODE_NOT_IN_LIST = 30000;
     public const int NODE_DIST_INFINITY = 30001;
+    public const int OBJECTIVE_EMPTY = 30002;
     public const int MAX_DIJKSTRA_ITERATIONS = 30000;
+    public const float COST_INFINITY = 30001.0f;
+    public const float LOKER_INCREASE_FACTOR = 1.5f;
 
     // Cat personality constants
     public const int NO_OF_FUR_COLORS = 1;
@@ -38,6 +41,10 @@ public class Definitions
     public const float MIN_LOKER_MOD = 0.8f;
     public const float MAX_APPEAL_MOD = 1.2f;
     public const float MIN_APPEAL_MOD = 0.8f;
+    public const float MAX_FOCUS_BASE = 0.4f;
+    public const float MIN_FOCUS_BASE = 0.1f;
+    public const float MAX_FOCUS_MOD = 0.2f;
+    public const float MIN_FOCUS_MOD = 0.05f;
 
     // Object indexes
     public const int ASH_URN_IDX = 0;

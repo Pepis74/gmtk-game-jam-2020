@@ -342,6 +342,46 @@ public class GameManager : MonoBehaviour
         return cellsInRadius;
     }
 
+    public List<int> GetAdjacentCellsCapped(int cell)
+    {
+        bool is_top;
+        bool is_bot;
+        bool is_lft;
+        bool is_rgt;
+
+        List<int> adjacentCells = new List<int>;
+
+        // Detect postion of the cell in the board
+        is_top = (cell / Definitions.BOARD_SIZE == 0);
+        is_bot = (cell / Definitions.BOARD_SIZE == Definitions.BOARD_SIZE - 1);
+        is_lft = (cell % Definitions.BOARD_SIZE == 0);
+        is_rgt = (cell % Definitions.BOARD_SIZE == Definitions.BOARD_SIZE - 1);
+
+        // Detect adjacent cells based on position
+        if (!is_top)
+        {
+            adjacentCells.Add(cell - Definitions.BOARD_SIZE);
+        }
+
+        if (!is_bot)
+        {
+            adjacentCells.Add(cell + Definitions.BOARD_SIZE);
+        }
+
+        if (!is_lft)
+        {
+            adjacentCells.Add(cell - 1);
+        }
+
+        if (!is_rgt)
+        {
+            adjacentCells.Add(cell + 1);
+        }
+
+        return adjacentCells;
+    }
+
+
     public int GetLowestArrayValuePos(float[] array)
     {
         float lowestValue = array[0];
