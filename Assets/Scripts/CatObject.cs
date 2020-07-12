@@ -11,7 +11,7 @@ public class CatObject : MonoBehaviour
     public string descFlavor;
     [SerializeField]
     int movementType;
-    int internalMovementType;
+    public int internalMovementType;
     public int cellPosition;
     public int cellToMoveTo;
     public int attractiveness;
@@ -31,7 +31,7 @@ public class CatObject : MonoBehaviour
         uI = FindObjectOfType<UIManager>();
         rig = GetComponent<Rigidbody2D>();
         internalMovementType = movementType;
-        //CloneMovementType();
+        CloneMovementType();
     }
 
     void Update()
@@ -69,7 +69,6 @@ public class CatObject : MonoBehaviour
                 cellPosition = cellToMoveTo;
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, manager.cells[cellPosition].zOffset);
                 manager.cells[cellPosition].occupied = true;
-                CloneMovementType();
                 manager.EndTurn();
             }
         }
@@ -103,7 +102,7 @@ public class CatObject : MonoBehaviour
         manager.buttonSound.Play();
     }
 
-    void CloneMovementType()
+    public void CloneMovementType()
     {
         int tempDistance;
         int lowestDistance = Definitions.NODE_DIST_INFINITY;
@@ -117,7 +116,7 @@ public class CatObject : MonoBehaviour
             for (int i = 0; i < valuables.Length; i++)
             {
                 tempDistance = manager.GetDistanceBetweenCells(cellPosition, valuables[i].cellPosition);
-                if (tempDistance < lowestDistance)
+                if (tempDistance < lowestDistance && tempDistance != 0)
                 {
                     lowestDistance = tempDistance;
                     closestValuable = i;

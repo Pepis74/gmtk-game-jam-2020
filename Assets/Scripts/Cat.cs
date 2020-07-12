@@ -599,7 +599,6 @@ public class Cat : MonoBehaviour
             visitedNodes.Add(currentNode);
 
             // Break the loop if the node is found
-
             if (visitedNodes.Contains(cell))
             {
                 break;
