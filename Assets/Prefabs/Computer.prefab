@@ -186,7 +186,7 @@ MonoBehaviour:
     WARM. YOU AND HIM DON'T PLAY VIDEOGAMES TOGETHER AS MUCH AS YOU USED TO, MAYBE
     IT'S A CONSEQUENCE OF GROWING UP? WHO KNOWS, BUT YOU WISH YOU WOULD GAME MORE
     OFTEN.
-  movementType: 0
+  movementType: 5
   cellPosition: 0
   cellToMoveTo: 0
   attractiveness: 5

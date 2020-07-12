@@ -71,7 +71,7 @@ public class CatObject : MonoBehaviour
                 manager.EndTurn();
             }
 
-            CloneMovementType();
+            
         }
 
         #endregion

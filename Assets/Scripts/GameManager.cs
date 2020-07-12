@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
 
                 break;
 
-            case 1:
+            case 3:
                 // Detect distances from the cell to the edges of the board
                 dstToTop = toMove.cellPosition / Definitions.BOARD_SIZE;
                 dstToBot = (Definitions.BOARD_SIZE - 1) - (toMove.cellPosition / Definitions.BOARD_SIZE);
@@ -347,7 +347,7 @@ public class GameManager : MonoBehaviour
 
                 break;
 
-            case 2:
+            case 1:
                 startingViableCells = GetAdjacentCells(toMove.cellPosition, 2);
 
                 for (int i = 0; i < startingViableCells.Count; i++)
@@ -365,7 +365,7 @@ public class GameManager : MonoBehaviour
 
                 break;
 
-            case 3:
+            case 4:
                 startingViableCells = GetAdjacentCells(toMove.cellPosition, 3);
 
                 for (int i = 0; i < startingViableCells.Count; i++)
@@ -383,7 +383,7 @@ public class GameManager : MonoBehaviour
 
                 break;
 
-            case 4:
+            case 2:
                 // Detect distances from the cell to the edges of the board
                 dstToTop = toMove.cellPosition / Definitions.BOARD_SIZE;
                 dstToBot = (Definitions.BOARD_SIZE - 1) - (toMove.cellPosition / Definitions.BOARD_SIZE);
