@@ -35,25 +35,24 @@ public class Definitions
     public const int CAT_MOVT_DIR_UNKNOWN = 4;
 
     // Cat personality constants
-    public const int NO_OF_FUR_COLORS = 1;
-    public const float MAX_STAMINA_BASE = 1.0f;
-    public const float MIN_STAMINA_BASE = 0.8f;
-    public const float MAX_STAMINA_MOD = 1.2f;
-    public const float MIN_STAMINA_MOD = 0.8f;
-    public const float MAX_SLEEP_BASE = 0.0f;
-    public const float MIN_SLEEP_BASE = 0.0f;
-    public const float MAX_SLEEP_MOD = 1.2f;
-    public const float MIN_SLEEP_MOD = 0.8f;
-    public const float MAX_LOKER_BASE = 1.0f;
-    public const float MIN_LOKER_BASE = 0.8f;
-    public const float MAX_LOKER_MOD = 1.2f;
-    public const float MIN_LOKER_MOD = 0.8f;
-    public const float MAX_APPEAL_MOD = 1.2f;
-    public const float MIN_APPEAL_MOD = 0.8f;
+    public const float MAX_STAMINA_BASE = 2.0f;
+    public const float MIN_STAMINA_BASE = 1.0f;
+    public const float MAX_STAMINA_MOD = 1.5f;
+    public const float MIN_STAMINA_MOD = 0.5f;
+    public const float MAX_SLEEP_BASE = 0.3f;
+    public const float MIN_SLEEP_BASE = 0.1f;
+    public const float MAX_SLEEP_MOD = 1.3f;
+    public const float MIN_SLEEP_MOD = 0.7f;
+    public const float MAX_LOKER_BASE = 0.3f;
+    public const float MIN_LOKER_BASE = 0.1f;
+    public const float MAX_LOKER_MOD = 1.3f;
+    public const float MIN_LOKER_MOD = 0.7f;
+    public const float MAX_APPEAL_MOD = 1.3f;
+    public const float MIN_APPEAL_MOD = 0.7f;
     public const float MAX_FOCUS_BASE = 0.4f;
     public const float MIN_FOCUS_BASE = 0.1f;
-    public const float MAX_FOCUS_MOD = 0.2f;
-    public const float MIN_FOCUS_MOD = 0.05f;
+    public const float MAX_FOCUS_MOD = 1.5f;
+    public const float MIN_FOCUS_MOD = 0.5f;
 
     // Object indexes
     public const int ASH_URN_IDX = 0;
