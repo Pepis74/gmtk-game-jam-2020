@@ -65,6 +65,7 @@ public class CatObject : MonoBehaviour
                 cellPosition = cellToMoveTo;
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, manager.cells[cellPosition].zOffset);
                 manager.cells[cellPosition].occupied = true;
+                manager.EndTurn();
             }
         }
 

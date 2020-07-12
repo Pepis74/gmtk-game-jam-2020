@@ -9,6 +9,10 @@ public class UIManager : MonoBehaviour
     public Text descGameplay;
     public Text descFlavor;
     public GameObject description;
+    [SerializeField]
+    GameObject phone;
+    [SerializeField]
+    GameObject[] toActivate;
     GameManager manager;
 
     void Start()
@@ -16,10 +20,19 @@ public class UIManager : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartGame()
     {
-        
+        phone.SetActive(false);
+
+        for (int i = 0; i < toActivate.Length; i++)
+        {
+            toActivate[i].SetActive(true);
+        }
+
+        for (int i = 0; i < manager.catObjects.Count; i++)
+        {
+            manager.catObjects[i].GetComponent<Collider2D>().enabled = true;
+        }
     }
 
     public void CloseDesc()

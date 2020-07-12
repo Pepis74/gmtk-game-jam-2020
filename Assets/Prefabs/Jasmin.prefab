@@ -223,7 +223,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7229476290065418776}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -260,7 +260,7 @@ MonoBehaviour:
   descFlavor: ITS AROMA FILLS THE ROOM AND REMINDS YOU OF THOSE SUMMERS YOU SPENT
     AT THE COUNTRYHOUSE WHEN YOU WERE A KID. SWIMMING IN THE LAKE WITH MOM. PLAYING
     CHESS WITH DAD. STAYING UP LATE TO WATCH THE STARRY SKY. GOOD TIMES.
-  movementType: 0
+  movementType: 4
   cellPosition: 0
   cellToMoveTo: 0
   attractiveness: 4

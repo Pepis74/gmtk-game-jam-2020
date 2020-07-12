@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Text selectText;
     [SerializeField]
+    Text turnsText;
+    [SerializeField]
     Transform objectParent;
     public CatObject objectToMove;
     public List<CatObject> catObjects = new List<CatObject>();
@@ -30,6 +32,9 @@ public class GameManager : MonoBehaviour
     int crescendoA;
     int randomInt;
     int posValue;
+    int turns;
+    [SerializeField]
+    Cat cat;
     List<int> viableCells = new List<int>();
     List<int> startingViableCells = new List<int>();
 
@@ -63,6 +68,8 @@ public class GameManager : MonoBehaviour
             crescendoA += 1;
         }
 
+        cells[0].occupied = true;
+        cells[7].occupied = true;
         cells[20].occupied = true;
         cells[26].occupied = true;
 
@@ -77,7 +84,7 @@ public class GameManager : MonoBehaviour
                 randomInt = Random.Range(31, 63);
             }
             while (cells[randomInt].occupied);
-
+            
             ins = Instantiate(objectPrefabs[i], Vector2.zero, objectPrefabs[i].transform.rotation);
             ins.transform.parent = objectParent;
             ins.transform.localPosition = new Vector3(Mathf.Round(cells[randomInt].transform.localPosition.x * 1000) / 1000 + objectPrefabs[i].GetComponent<CatObject>().xOffset, (Mathf.Round(cells[randomInt].transform.localPosition.y * 1000) / 1000) + objectPrefabs[i].GetComponent<CatObject>().yOffset, -0.001f * randomInt);
@@ -357,6 +364,24 @@ public class GameManager : MonoBehaviour
                 }
 
                 break;
+
+            case 3:
+                startingViableCells = GetAdjacentCells(toMove.cellPosition, 3);
+
+                for (int i = 0; i < startingViableCells.Count; i++)
+                {
+                    if (!cells[startingViableCells[i]].occupied)
+                    {
+                        viableCells.Add(startingViableCells[i]);
+                    }
+                }
+
+                for (int i = 0; i < viableCells.Count; i++)
+                {
+                    cells[viableCells[i]].GetComponentInChildren<SpriteRenderer>().color = blue;
+                }
+
+                break;
         }
 
         #endregion
@@ -390,6 +415,14 @@ public class GameManager : MonoBehaviour
 
         selectText.gameObject.SetActive(false);
         gameOverScreen.SetActive(true);
+    }
+
+    public void EndTurn()
+    {
+        turns += 1;
+        turnsText.text = Definitions.TURNS_TXT + (Definitions.MAX_TURNS - turns);
+        selectText.text = Definitions.CAT_TXT;
+        cat.StartAction();
     }
 
     public void Retry()

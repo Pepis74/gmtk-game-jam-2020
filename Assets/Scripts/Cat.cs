@@ -64,10 +64,14 @@ public class Cat : MonoBehaviour
 
     void Update()
     {
-        //SetState();
+        
+    }
 
-        // Where to move to (Returns a cell number):
-        //GetNextCell(getObjectivePath(GetObjective()));
+    public void StartAction()
+    {
+        SetState();
+
+        GetNextCell(getObjectivePath(GetObjective()));
     }
 
     void SetState()

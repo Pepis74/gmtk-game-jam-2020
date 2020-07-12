@@ -16,6 +16,7 @@ public class Definitions
     public const int BOARD_SIZE = 8;
     public const int NO_OF_BOARD_CELLS = BOARD_SIZE ^ 2;
     public const int NO_OF_ADJACENT_CELLS = 8;
+    public const int MAX_TURNS = 30;
 
     // Cat related constants
     public const int NODE_NOT_IN_LIST = 30000;
@@ -60,10 +61,11 @@ public class Definitions
     public const int BAG_OF_TREATS_IDX = 8;
 
     // Texts
-    public const string SELECT_TXT = "SELECT AN OBJECT TO MOVE OR PLACE A NEW ONE";
+    public const string SELECT_TXT = "SELECT AN OBJECT TO MOVE OR PLACE A NEW ONE FROM YOUR INVENTORY";
     public const string CHOOSE_TXT = "CHOOSE A LOCATION, PRESS AGAIN ON THE OBJECT TO CANCEL";
     public const string PLACE_TXT = "PLACE THE OBJECT YOU'VE CHOSEN";
     public const string CAT_TXT = "IT'S THE CAT'S TURN";
+    public const string TURNS_TXT = "TURNS REMAINING: ";
 
     // Speeds
     public const float CATOBJ_SPD = 0.75f;
