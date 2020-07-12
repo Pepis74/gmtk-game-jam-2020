@@ -617,6 +617,7 @@ public class GameManager : MonoBehaviour
         turns += 1;
         turnsText.text = Definitions.TURNS_TXT + (Definitions.MAX_TURNS - turns);
         selectText.text = Definitions.CAT_TXT;
+        Debug.Log("Cat about to begin");
         cat.StartAction();
     }
 
@@ -798,15 +799,12 @@ public class GameManager : MonoBehaviour
         List<int> neighbors = new List<int>();
         int currentTentativeDistance;
         int currentNode;
-        List<int> temporaryRoute = new List<int>();
-        int temporaryRouteSize;
-        int temporaryPredecessor;
         int timeout = 0;
 
         // Initialize arrays & lists
         for (int i = 0; i < Definitions.NO_OF_BOARD_CELLS; i++)
         {
-            unvisitedNodes[i] = i;
+            unvisitedNodes.Add(i);
             tentativeDistance[i] = Definitions.NODE_DIST_INFINITY;
             predecessors[i] = Definitions.NODE_NOT_IN_LIST;
         }

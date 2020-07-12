@@ -14,7 +14,7 @@ public class Definitions
 
     // Board related constants
     public const int BOARD_SIZE = 8;
-    public const int NO_OF_BOARD_CELLS = BOARD_SIZE ^ 2;
+    public const int NO_OF_BOARD_CELLS = BOARD_SIZE * BOARD_SIZE;
     public const int NO_OF_ADJACENT_CELLS = 8;
     public const int MAX_TURNS = 30;
 
@@ -40,8 +40,8 @@ public class Definitions
     public const float MIN_STAMINA_BASE = 0.8f;
     public const float MAX_STAMINA_MOD = 1.2f;
     public const float MIN_STAMINA_MOD = 0.8f;
-    public const float MAX_SLEEP_BASE = 1.0f;
-    public const float MIN_SLEEP_BASE = 0.8f;
+    public const float MAX_SLEEP_BASE = 0.0f;
+    public const float MIN_SLEEP_BASE = 0.0f;
     public const float MAX_SLEEP_MOD = 1.2f;
     public const float MIN_SLEEP_MOD = 0.8f;
     public const float MAX_LOKER_BASE = 1.0f;

@@ -94,35 +94,39 @@ public class Cat : MonoBehaviour
 
     public void StartAction()
     {
+        Debug.Log("1");
         SetState();
 
+        Debug.Log("2");
         audios = audioObj.GetComponents<AudioSource>();
         int randomInt = Random.Range(0, audios.Length);
         audios[randomInt].Play();
 
+        Debug.Log("3");
         StartCoroutine(MoveCo());
     }
 
     IEnumerator MoveCo()
     {
+        Debug.Log("Sleep" + isAsleep);
         if(!isAsleep)
         {
+            Debug.Log("4");
             pathToMoveTo = getObjectivePath(GetObjective());
-
             for (int i = 0; i < pathToMoveTo.route.Length; i++)
             {
                 cellToMoveTo = pathToMoveTo.route[i];
                 move = true;
                 yield return new WaitUntil(() => !move);
-
-                if (pathToMoveTo.route[i] == GetNextCell(getObjectivePath(GetObjective())))
+                Debug.Log("5");
+                if (pathToMoveTo.route[i] == GetNextCell(pathToMoveTo))
                 {
                     break;
                 }
             }
         }
-        
 
+        InteractWithObject();
     }
 
     void SetState()
@@ -457,52 +461,56 @@ public class Cat : MonoBehaviour
         for (int i = 0; i < surroundingCells.Count; i++)
         {
             ToFind = manager.catObjects.Find(x => x.cellPosition == surroundingCells[i]);
-            tempInterest = ToFind.attractiveness;
-
-            switch (ToFind.objName)
+            
+            if (ToFind != null)
             {
-                case "ASH URN":
-                    tempInterest = tempInterest * personality.appealModifiers[Definitions.ASH_URN_IDX];
-                    break;
+                tempInterest = ToFind.attractiveness;
 
-                case "AQUARIUM":
-                    tempInterest = tempInterest * personality.appealModifiers[Definitions.AQUARIUM_IDX];
-                    break;
+                switch (ToFind.objName)
+                {
+                    case "ASH URN":
+                        tempInterest = tempInterest * personality.appealModifiers[Definitions.ASH_URN_IDX];
+                        break;
 
-                case "FAVORITE JACKET":
-                    tempInterest = tempInterest * personality.appealModifiers[Definitions.FAVORITE_JACKET_IDX];
-                    break;
+                    case "AQUARIUM":
+                        tempInterest = tempInterest * personality.appealModifiers[Definitions.AQUARIUM_IDX];
+                        break;
 
-                case "COMPUTER":
-                    tempInterest = tempInterest * personality.appealModifiers[Definitions.COMPUTER_IDX];
-                    break;
+                    case "FAVORITE JACKET":
+                        tempInterest = tempInterest * personality.appealModifiers[Definitions.FAVORITE_JACKET_IDX];
+                        break;
 
-                case "JASMINE":
-                    tempInterest = tempInterest * personality.appealModifiers[Definitions.JASMINE_IDX];
-                    break;
+                    case "COMPUTER":
+                        tempInterest = tempInterest * personality.appealModifiers[Definitions.COMPUTER_IDX];
+                        break;
 
-                case "AIR FRESHENER":
-                    tempInterest = tempInterest * personality.appealModifiers[Definitions.AIR_FRESHENER_IDX];
-                    break;
+                    case "JASMINE":
+                        tempInterest = tempInterest * personality.appealModifiers[Definitions.JASMINE_IDX];
+                        break;
 
-                case "CATNIP":
-                    tempInterest = tempInterest * personality.appealModifiers[Definitions.CATNIP_IDX];
-                    break;
+                    case "AIR FRESHENER":
+                        tempInterest = tempInterest * personality.appealModifiers[Definitions.AIR_FRESHENER_IDX];
+                        break;
 
-                case "VACUUM CLEANER":
-                    tempInterest = tempInterest * personality.appealModifiers[Definitions.VACUUM_CLEANER_IDX];
-                    break;
+                    case "CATNIP":
+                        tempInterest = tempInterest * personality.appealModifiers[Definitions.CATNIP_IDX];
+                        break;
 
-                case "BAG OF TREATS":
-                    tempInterest = tempInterest * personality.appealModifiers[Definitions.BAG_OF_TREATS_IDX];
-                    break;
-            }
+                    case "VACUUM CLEANER":
+                        tempInterest = tempInterest * personality.appealModifiers[Definitions.VACUUM_CLEANER_IDX];
+                        break;
 
-            // Save highest interest
-            if (tempInterest > maxInterest)
-            {
-                maxInterest = tempInterest;
-                selectedCell = surroundingCells[i];
+                    case "BAG OF TREATS":
+                        tempInterest = tempInterest * personality.appealModifiers[Definitions.BAG_OF_TREATS_IDX];
+                        break;
+                }
+
+                // Save highest interest
+                if (tempInterest > maxInterest)
+                {
+                    maxInterest = tempInterest;
+                    selectedCell = surroundingCells[i];
+                }
             }
         }
 
@@ -537,13 +545,13 @@ public class Cat : MonoBehaviour
         // Initialize arrays & lists
         for (int i = 0; i < Definitions.NO_OF_BOARD_CELLS; i++)
         {
-            unvisitedNodes[i] = i;
+            unvisitedNodes.Add(i);
             tentativeDistance[i] = Definitions.NODE_DIST_INFINITY;
             predecessors[i] = Definitions.NODE_NOT_IN_LIST;
         }
         
         // Set tentative distance to current node to 0
-        tentativeDistance[this.cellPosition] = 0;
+        tentativeDistance[cellPosition] = 0;
 
         while (!visitedNodes.Contains(cell) || timeout < Definitions.MAX_DIJKSTRA_ITERATIONS)
         {   
@@ -608,7 +616,7 @@ public class Cat : MonoBehaviour
             temporaryRoute.Add(temporaryPredecessor);
             temporaryRouteSize++;
         }
-        while (temporaryPredecessor != this.cellPosition);
+        while (temporaryPredecessor != cellPosition);
 
         // Reorder route array
         int j = 0;

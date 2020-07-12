@@ -31,7 +31,7 @@ public class CatObject : MonoBehaviour
         uI = FindObjectOfType<UIManager>();
         rig = GetComponent<Rigidbody2D>();
         internalMovementType = movementType;
-        CloneMovementType();
+        //CloneMovementType();
     }
 
     void Update()
@@ -58,7 +58,7 @@ public class CatObject : MonoBehaviour
 
         if (move)
         {
-            transform.localPosition = Vector3.MoveTowards(new Vector3(transform.localPosition.x, transform.localPosition.y, manager.cells[cellPosition].zOffset), new Vector3(manager.cells[cellToMoveTo].transform.localPosition.x + xOffset, manager.cells[cellToMoveTo].transform.localPosition.y + yOffset, manager.cells[cellToMoveTo].zOffset), Definitions.CATOBJ_SPD * Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(new Vector3(transform.localPosition.x, transform.localPosition.y, manager.cells[cellPosition].zOffset), new Vector3(manager.cells[cellToMoveTo].transform.localPosition.x + xOffset, manager.cells[cellToMoveTo].transform.localPosition.y + yOffset, manager.cells[cellPosition].zOffset), Definitions.CATOBJ_SPD * Time.deltaTime);
             transform.localPosition = new Vector3(Mathf.Round(transform.localPosition.x * 1000) / 1000, Mathf.Round(transform.localPosition.y * 1000) / 1000, transform.localPosition.z);
 
             if(transform.localPosition == new Vector3(manager.cells[cellToMoveTo].transform.localPosition.x + xOffset, manager.cells[cellToMoveTo].transform.localPosition.y + yOffset, transform.localPosition.z))
@@ -114,7 +114,7 @@ public class CatObject : MonoBehaviour
 
             for (int i = 0; i < valuables.Length; i++)
             {
-                tempDistance = manager.GetDistanceBetweenCells(this.cellPosition, valuables[i].cellPosition);
+                tempDistance = manager.GetDistanceBetweenCells(cellPosition, valuables[i].cellPosition);
                 if (tempDistance < lowestDistance)
                 {
                     lowestDistance = tempDistance;
@@ -124,11 +124,11 @@ public class CatObject : MonoBehaviour
 
             if (closestValuable == Definitions.OBJECTIVE_EMPTY)
             {
-                this.movementType = 4;
+                movementType = 4;
             }
             else
             {
-                this.movementType = valuables[closestValuable].movementType;
+                movementType = valuables[closestValuable].movementType;
             }
         }
     }
