@@ -798,7 +798,6 @@ public class GameManager : MonoBehaviour
         List<int> neighbors = new List<int>();
         int currentTentativeDistance;
         int currentNode;
-        int timeout = 0;
 
         // Initialize arrays & lists
         for (int i = 0; i < Definitions.NO_OF_BOARD_CELLS; i++)
@@ -811,7 +810,7 @@ public class GameManager : MonoBehaviour
         // Set tentative distance to current node to 0
         tentativeDistance[cell1] = 0;
 
-        while (!visitedNodes.Contains(cell2) || timeout < Definitions.MAX_DIJKSTRA_ITERATIONS)
+        for (int l = 0; l < Definitions.MAX_DIJKSTRA_ITERATIONS; l++)
         {
             // Select the next node
             currentNode = GetLowestIntArrayValueInsidePos(tentativeDistance, unvisitedNodes);
@@ -843,12 +842,11 @@ public class GameManager : MonoBehaviour
             unvisitedNodes.Remove(currentNode);
             visitedNodes.Add(currentNode);
 
-            timeout++;
-        }
-
-        if (timeout >= Definitions.MAX_DIJKSTRA_ITERATIONS)
-        {
-            Debug.Log("Error: Reached max allowed number of Dijkstra iterations");
+            // Break the loop if the node is found
+            if (visitedNodes.Contains(cell2))
+            {
+                break;
+            }
         }
 
         // Compile results

@@ -31,7 +31,7 @@ public class CatObject : MonoBehaviour
         uI = FindObjectOfType<UIManager>();
         rig = GetComponent<Rigidbody2D>();
         internalMovementType = movementType;
-        //CloneMovementType();
+        CloneMovementType();
     }
 
     void Update()
@@ -131,5 +131,7 @@ public class CatObject : MonoBehaviour
                 movementType = valuables[closestValuable].movementType;
             }
         }
+
+        Debug.Log(movementType);
     }
 }
