@@ -541,6 +541,7 @@ public class Cat : MonoBehaviour
             }
 
             anim.SetBool("interact", true);
+            StartCoroutine(InteractFalseCo());
         }
     }
 
