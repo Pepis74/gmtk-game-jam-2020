@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     Vector2 oGCellPos;
     UIManager uI;
     public Cell[] cells = new Cell[Definitions.BOARD_SIZE * Definitions.BOARD_SIZE];
-    public int valuablesLeft;
+    public int valuablesLeft = 5;
     int crescendoA;
     int randomInt;
     int posValue;
