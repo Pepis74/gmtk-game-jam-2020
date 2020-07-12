@@ -382,6 +382,200 @@ public class GameManager : MonoBehaviour
                 }
 
                 break;
+
+            case 4:
+                // Detect distances from the cell to the edges of the board
+                dstToTop = toMove.cellPosition / Definitions.BOARD_SIZE;
+                dstToBot = (Definitions.BOARD_SIZE - 1) - (toMove.cellPosition / Definitions.BOARD_SIZE);
+                dstToRgt = toMove.cellPosition % Definitions.BOARD_SIZE;
+                dstToLft = (Definitions.BOARD_SIZE - 1) - (toMove.cellPosition % Definitions.BOARD_SIZE);
+
+                obstructed = false;
+                coordX = 0;
+                coordY = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    coordX = coordX + 1;
+
+                    // Check boundaries
+                    outOfBounds = false;
+
+                    if (coordX > dstToRgt)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordX < -dstToLft)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY > dstToTop)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY < -dstToBot)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (!outOfBounds)
+                    {
+                        newCell = toMove.cellPosition - coordX - (coordY * Definitions.BOARD_SIZE);
+
+                        if (!cells[newCell].occupied && !obstructed)
+                        {
+                            viableCells.Add(newCell);
+                        }
+                        else if (i != toMove.cellPosition)
+                        {
+                            obstructed = true;
+                        }
+                    }
+                }
+
+                obstructed = false;
+                coordX = 0;
+                coordY = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    coordX = coordX - 1;
+
+                    // Check boundaries
+                    outOfBounds = false;
+
+                    if (coordX > dstToRgt)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordX < -dstToLft)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY > dstToTop)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY < -dstToBot)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (!outOfBounds)
+                    {
+                        newCell = toMove.cellPosition - coordX - (coordY * Definitions.BOARD_SIZE);
+
+                        if (!cells[newCell].occupied && !obstructed)
+                        {
+                            viableCells.Add(newCell);
+                        }
+                        else if (i != toMove.cellPosition)
+                        {
+                            obstructed = true;
+                        }
+                    }
+                }
+
+                obstructed = false;
+                coordX = 0;
+                coordY = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    coordY = coordY + 1;
+
+                    // Check boundaries
+                    outOfBounds = false;
+
+                    if (coordX > dstToRgt)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordX < -dstToLft)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY > dstToTop)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY < -dstToBot)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (!outOfBounds)
+                    {
+                        newCell = toMove.cellPosition - coordX - (coordY * Definitions.BOARD_SIZE);
+
+                        if (!cells[newCell].occupied && !obstructed)
+                        {
+                            viableCells.Add(newCell);
+                        }
+                        else if (i != toMove.cellPosition)
+                        {
+                            obstructed = true;
+                        }
+                    }
+                }
+
+                obstructed = false;
+                coordX = 0;
+                coordY = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    coordY = coordY - 1;
+
+                    // Check boundaries
+                    outOfBounds = false;
+
+                    if (coordX > dstToRgt)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordX < -dstToLft)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY > dstToTop)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (coordY < -dstToBot)
+                    {
+                        outOfBounds = true;
+                    }
+
+                    if (!outOfBounds)
+                    {
+                        newCell = toMove.cellPosition - coordX - (coordY * Definitions.BOARD_SIZE);
+
+                        if (!cells[newCell].occupied && !obstructed)
+                        {
+                            viableCells.Add(newCell);
+                        }
+                        else if (i != toMove.cellPosition)
+                        {
+                            obstructed = true;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < viableCells.Count; i++)
+                {
+                    cells[viableCells[i]].GetComponentInChildren<SpriteRenderer>().color = blue;
+                }
+
+                break;
         }
 
         #endregion
