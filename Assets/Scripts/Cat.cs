@@ -569,6 +569,37 @@ public class Cat : MonoBehaviour
         return optimalPath;
     }
 
+    int[] GetRouteDirections(int[] route)
+    {
+        int[] routeDirections = new int[route.Length - 1];
+
+        for (int i = 0; i < routeDirections.Length - 1; i++)
+        {
+            if (route[i + 1] == (route[i] - Definitions.BOARD_SIZE))
+            {
+                routeDirections[i] = Definitions.CAT_MOVT_DIR_UP;
+            }
+            else if (route[i + 1] == (route[i] + Definitions.BOARD_SIZE))
+            {
+                routeDirections[i] = Definitions.CAT_MOVT_DIR_DOWN;
+            }
+            else if (route[i + 1] == (route[i] - 1))
+            {
+                routeDirections[i] = Definitions.CAT_MOVT_DIR_RIGHT;
+            }
+            else if (route[i + 1] == (route[i] + 1))
+            {
+                routeDirections[i] = Definitions.CAT_MOVT_DIR_LEFT;
+            }
+            else
+            {
+                routeDirections[i] = Definitions.CAT_MOVT_DIR_UNKNOWN;
+            }
+        }
+
+        return routeDirections;
+    }
+
     int GetLowestArrayValueInsidePos(float[] mainArray, List<int> containingList)
     {
         int lowestValuePos;
